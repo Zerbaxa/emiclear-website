@@ -17,13 +17,20 @@ const ogImage = new URL(lang === "en" ? "/og-en.png" : "/og.png", Astro.site);
 const isEnglish = lang === "en";
 const koreanPath = Astro.url.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
 const englishPath = `/en${Astro.url.pathname === "/" ? "/" : Astro.url.pathname}`;
+const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/en/";
 const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: isEnglish ? "Emergency Medicine Innovation — Clinical Learning, Education and Research" : "응급의학혁신교육연구회",
+  name: isEnglish ? "Emergency Medicine Initiative for Clinical Learning, Education, Artificial Intelligence, and Research" : "응급의학혁신교육연구회",
   alternateName: "EM-I-CLEAR",
   url: Astro.site?.toString(),
-  description: isEnglish ? "A nonprofit group advancing education, research and innovation in emergency care for the public good" : "응급의료 교육, 연구와 혁신을 위한 비영리 연구회",
+  description: isEnglish ? "A mission-driven, independent nonprofit association based in the Republic of Korea, advancing public benefit through education, research, and responsible technology" : "교육과 연구, 책임 있는 기술을 통해 필요한 도움과 적절한 대응을 연결하는 독립적 비영리단체",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: isEnglish ? "Maebong-ro" : "매봉로",
+    addressLocality: isEnglish ? "Dongjak-gu, Seoul" : "서울특별시 동작구",
+    addressCountry: "KR",
+  },
 };
 ---
 
@@ -34,14 +41,14 @@ const organization = {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0b1f33" />
+    <meta name="theme-color" content="#fbfcf8" />
     <link rel="icon" type="image/svg+xml" href="/brand/emiclear-mark.svg" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="ko" href={new URL(isEnglish ? koreanPath : Astro.url.pathname, Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(isEnglish ? Astro.url.pathname : englishPath, Astro.site)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
     <title>{pageTitle}</title>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={siteName} />
@@ -51,16 +58,37 @@ const organization = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={isEnglish ? "EM-I-CLEAR — Education, research and innovation for better emergency care" : "EM-I-CLEAR — 더 나은 응급의료를 위한 교육, 연구, 혁신"} />
+    <meta property="og:image:alt" content={isEnglish ? "EM-I-CLEAR — Care should reach everyone" : "EM-I-CLEAR — 의료는 모두에게 닿아야 합니다"} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(organization)} />
   </head>
-  <body>
-    <Header lang={lang} />
+  <body class:list={{ "home-page": isHome }}>
+    <Header lang={lang} overlay={isHome} />
     <main id="main-content" data-pagefind-body>
       <slot />
     </main>
     <Footer lang={lang} />
+    <script>
+      const header = document.querySelector<HTMLElement>(".site-header");
+      const updateHeader = () => header?.classList.toggle("is-scrolled", window.scrollY > 12);
+      updateHeader();
+      window.addEventListener("scroll", updateHeader, { passive: true });
+
+      const reveals = document.querySelectorAll<HTMLElement>("[data-reveal]");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.14 });
+        reveals.forEach((element) => observer.observe(element));
+      } else {
+        reveals.forEach((element) => element.classList.add("is-visible"));
+      }
+    </script>
   </body>
 </html>

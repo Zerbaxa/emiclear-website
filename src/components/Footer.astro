@@ -6,16 +6,27 @@ const isEnglish = lang === "en";
 
 <footer class="site-footer">
   <div class="container footer-grid">
-    <div>
-      <p class="footer-wordmark">EM-I-CLEAR</p>
-      <p class="footer-local-name">{isEnglish ? "Emergency Medicine Innovation — Clinical Learning, Education and Research" : "응급의학혁신교육연구회"}</p>
+    <div class="footer-brand">
+      <div class="footer-brand-line">
+        <img src="/brand/emiclear-mark.svg" alt="" width="38" height="38" />
+        <p class="footer-wordmark">EM-I-CLEAR</p>
+      </div>
+      <p class="footer-local-name">{isEnglish ? "Emergency Medicine Initiative for Clinical Learning, Education, Artificial Intelligence, and Research" : "응급의학혁신교육연구회"}</p>
+      <p class="footer-note">{isEnglish ? "Independent, mission-driven nonprofit · Republic of Korea" : "독립적 비영리단체"}</p>
     </div>
-    <div>
-      <p>{isEnglish ? "A nonprofit group connecting questions from emergency care with reviewed knowledge and practical education." : "현장의 질문을 검토된 지식과 실천 가능한 교육으로 연결합니다."}</p>
+    <div class="footer-message">
+      <p class="footer-kicker">{isEnglish ? "Care should reach everyone." : "의료는 모두에게 닿아야 합니다."}</p>
+      <p>{isEnglish ? "Education, research, and responsible technology for gaps in care." : "교육과 연구, 책임 있는 기술로 의료의 빈틈을 연결합니다."}</p>
+    </div>
+    <div class="footer-links">
+      <a href={isEnglish ? "/en/about/" : "/about/"}>{isEnglish ? "About" : "소개"}</a>
+      <a href={isEnglish ? "/en/education/" : "/education/"}>{isEnglish ? "Resources" : "자료"}</a>
+      <a href={isEnglish ? "/en/projects/" : "/projects/"}>{isEnglish ? "Education & Research" : "교육·연구"}</a>
+      <a href={isEnglish ? "/en/documents/" : "/documents/"}>{isEnglish ? "Public Documents" : "공개문서"}</a>
     </div>
   </div>
   <div class="container footer-bottom">
-    <p>© {new Date().getFullYear()} EM-I-CLEAR</p>
+    <p>© {new Date().getFullYear()} EM-I-CLEAR · {isEnglish ? "Maebong-ro, Dongjak-gu, Seoul, Republic of Korea" : "서울특별시 동작구 매봉로"}</p>
     <p>{isEnglish ? "Educational content: CC BY-NC-ND 4.0 · Site code: MIT" : "교육 콘텐츠: CC BY-NC-ND 4.0 · 사이트 코드: MIT"}</p>
   </div>
 </footer>

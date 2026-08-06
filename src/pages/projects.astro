@@ -1,11 +1,58 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PageHero from "../components/PageHero.astro";
-import EmptyState from "../components/EmptyState.astro";
 ---
 
-<BaseLayout title="연구·프로젝트" description="EM-I-CLEAR의 응급의료 연구와 혁신 프로젝트">
-  <PageHero eyebrow="Research & Projects" title="현장의 질문을 연구와 변화로" description="교육, 임상 절차, 현장 초음파와 기술 기반 개선을 포함한 응급의료 프로젝트를 소개합니다." />
-  <section class="section"><div class="container"><EmptyState title="프로젝트를 정리하고 있습니다" description="공개가 승인된 연구와 프로젝트부터 목적, 진행 상태와 결과를 소개하겠습니다." /></div></section>
-</BaseLayout>
+<BaseLayout title="교육·연구" description="의료 제공자와 시민·교사를 위한 교육, 현장의 질문을 잇는 연구, 의료 경험을 넓히는 기술 개발을 진행합니다.">
+  <section class="lab-hero lab-hero--compact">
+    <div class="container lab-hero__copy" data-reveal>
+      <p class="section-label">Education &amp; Research</p>
+      <h1>교육하고,<br />연구하고, 기술로 잇습니다.</h1>
+      <p>의료 제공자와 시민·교사를 교육하고, 현장의 질문을 연구와 기술 개발로 이어갑니다.</p>
+    </div>
+    <div class="container activity-index" data-reveal>
+      <a href="#simulation"><span>01 · Education</span><strong>전공의 시뮬레이션 교육</strong><i>진행 중</i></a>
+      <a href="#consultation-bot"><span>02 · Research</span><strong>자연어 기반 자동 상담봇</strong><i>개발 진행 중</i></a>
+    </div>
+  </section>
 
+  <section class="lab-projects compact-projects" aria-label="현재 진행 중인 교육과 연구">
+    <article id="simulation" class="lab-project container">
+      <div class="project-copy" data-reveal>
+        <p class="chapter-index">01 <span>Education · In progress</span></p>
+        <h2>전공의<br />시뮬레이션 교육</h2>
+        <p>전공의가 응급상황을 반복적으로 경험하고, 팀 의사소통과 의사결정을 함께 되돌아볼 수 있도록 시뮬레이션 교육을 시행하고 있습니다.</p>
+        <a class="arrow-link" href="https://github.com/Zerbaxa/SIM_AMIS" target="_blank" rel="noreferrer">교육용 SIM_AMIS 저장소 <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="project-visual project-visual--simulation" data-reveal aria-label="시나리오, 시뮬레이션, 디브리핑으로 이어지는 교육 흐름">
+        <div class="simulation-board">
+          <p>Resident simulation</p>
+          <ol><li><span>01</span><strong>Scenario</strong></li><li><span>02</span><strong>Simulation</strong></li><li><span>03</span><strong>Debrief</strong></li></ol>
+          <small>경험하고 · 함께 돌아보고 · 다음 대응을 준비합니다.</small>
+        </div>
+      </div>
+    </article>
+
+    <article id="consultation-bot" class="lab-project lab-project--reverse container">
+      <div class="project-copy" data-reveal>
+        <p class="chapter-index">02 <span>Research · In development</span></p>
+        <h2>자연어 기반<br />자동 상담봇</h2>
+        <p>환자가 자신의 문제를 자연어로 설명하면 핵심 내용을 정리하고, 의료기관 방문이 필요한 상황인지 상담하는 자동 상담봇을 개발하고 있습니다.</p>
+      </div>
+      <div class="project-visual project-visual--chat" data-reveal>
+        <div class="chat-device">
+          <div class="chat-device__head"><span class="brand-pip"></span><b>Consultation research</b><i>In development</i></div>
+          <div class="chat-bubble chat-bubble--user">지금 겪고 있는 문제를 자연어로 설명합니다.</div>
+          <div class="chat-bubble chat-bubble--assistant">핵심 증상과 시점을 정리하고, 병원 방문이 필요한 상황인지 함께 확인합니다.</div>
+          <div class="chat-device__input"><span>문제를 입력하세요</span><b>↑</b></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="project-note">
+    <div class="container" data-reveal>
+      <span>Research note</span>
+      <p>자동 상담봇은 현재 개발 중인 연구 프로젝트이며, 의료진의 진단이나 응급의료를 대신하지 않습니다.</p>
+    </div>
+  </section>
+</BaseLayout>

@@ -2,44 +2,75 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout lang="en" title="EM-I-CLEAR" description="Education, research and innovation for better emergency care.">
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">A Nonprofit for Better Emergency Care</p>
-        <h1>Education, research and innovation for better emergency care</h1>
-        <p>EM-I-CLEAR is a nonprofit group that connects experience from emergency care with evidence, creating reliable education and field-focused research for the public good.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="/en/education/">Explore education</a>
-          <a class="button button-secondary" href="/en/about/">About the group</a>
-        </div>
+<BaseLayout lang="en" title="EM-I-CLEAR" description="A mission-driven, independent nonprofit association based in the Republic of Korea, advancing public benefit through education, research, and responsible technology.">
+  <section class="story-hero story-hero--home">
+    <div class="container story-hero__content">
+      <p class="hero-label">Mission-driven nonprofit · Republic of Korea</p>
+      <h1>Care should reach<br />everyone.</h1>
+      <p class="story-hero__lead">We narrow gaps in care through education, research, and responsible technology.</p>
+      <div class="hero-actions">
+        <a class="button button-solid" href="#story">See our story</a>
+        <a class="button button-ghost" href="/en/projects/">Education &amp; Research</a>
       </div>
-      <div class="signal-panel" aria-hidden="true"><span class="signal-line"></span></div>
+    </div>
+    <a class="scroll-cue" href="#opening"><span>Scroll</span><i aria-hidden="true"></i></a>
+  </section>
+
+  <section id="opening" class="opening-statement">
+    <div class="container opening-statement__inner" data-reveal>
+      <p class="section-label">Why we exist</p>
+      <h2>Care begins<br />before the hospital.</h2>
+      <p>We connect families, schools, communities, and healthcare so people can recognize needs earlier and respond better.</p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">Our Principles</p>
-        <h2>Sharing reliable information responsibly</h2>
-        <p>We apply the same clear standards to every resource we publish.</p>
+  <section id="story" class="story-sequence" aria-label="What EM-I-CLEAR does">
+    <article id="programs" class="story-chapter container">
+      <figure class="story-media" data-reveal>
+        <span class="story-media__index" aria-hidden="true">01</span>
+        <img src="/images/pediatric-tools-pexels-4491759.jpg" alt="Toy medical tools used for child-friendly health education" width="2000" height="3000" loading="lazy" />
+        <figcaption>Health education that begins at a child's level</figcaption>
+      </figure>
+      <div class="story-copy" data-reveal>
+        <p class="chapter-label">Core program · Children &amp; Adolescents</p>
+        <h3>Start with those<br />most vulnerable.</h3>
+        <p>We help children and adolescents be recognized earlier, receive safer responses, and build the knowledge to protect their own health.</p>
+        <a class="arrow-link" href="/en/education/public/">Explore public resources <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="card-grid">
-        <article class="card"><p class="card-number">01</p><h3>Transparent evidence</h3><p>Key statements and recommendations are presented with their evidence and references.</p></article>
-        <article class="card"><p class="card-number">02</p><h3>Defined audiences</h3><p>Information is written for the distinct needs of healthcare professionals, patients and caregivers.</p></article>
-        <article class="card"><p class="card-number">03</p><h3>Ongoing review</h3><p>Resources include review dates and are updated as relevant evidence changes.</p></article>
+    </article>
+
+    <article class="story-chapter story-chapter--reverse container">
+      <figure class="story-media story-media--portrait" data-reveal>
+        <span class="story-media__index" aria-hidden="true">02</span>
+        <img src="/images/empty-classroom-pexels-30105084.jpg" alt="An empty learning space filled with sunlight" width="2200" height="2933" loading="lazy" />
+        <figcaption>A place where learning becomes preparedness</figcaption>
+      </figure>
+      <div class="story-copy" data-reveal>
+        <p class="chapter-label">Learn &amp; Prepare</p>
+        <h3>Prepared people<br />provide better care.</h3>
+        <p>We educate healthcare providers, teachers, and the public to support better care and more appropriate use of healthcare.</p>
+        <a class="arrow-link" href="/en/education/">Explore education <span aria-hidden="true">↗</span></a>
       </div>
-    </div>
+    </article>
+
+    <article class="story-chapter container">
+      <figure class="story-media story-media--phone" data-reveal>
+        <span class="story-media__index" aria-hidden="true">03</span>
+        <img src="/images/smartphone-unsplash-1678522345215.jpg" alt="A hand looking at a smartphone" width="2400" height="1600" loading="lazy" />
+        <figcaption>Helping people reach the next help.</figcaption>
+      </figure>
+      <div class="story-copy" data-reveal>
+        <p class="chapter-label">Research &amp; Technology</p>
+        <h3>Technology can<br />narrow the gap.</h3>
+        <p>We use AI and other technologies to lower geographic, language, and cultural barriers and expand people’s experience of care.</p>
+        <a class="arrow-link" href="/en/projects/">Explore education &amp; research <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
   </section>
 
-  <section class="section" style="background: #fff;">
-    <div class="container">
-      <div class="section-heading"><p class="eyebrow">Education Pathways</p><h2>Find information for your needs</h2></div>
-      <div class="audience-grid">
-        <a class="audience-card" href="/en/education/clinicians/"><p class="eyebrow">For Clinicians</p><h3>Healthcare professionals</h3><p>Evidence-informed resources with references, scope and review information for emergency care practice.</p></a>
-        <a class="audience-card" href="/en/education/public/"><p class="eyebrow">For the Public</p><h3>Patients and caregivers</h3><p>Clear information to help people understand emergencies and seek appropriate care.</p></a>
-      </div>
+  <section class="nonprofit-panel nonprofit-panel--minimal">
+    <div class="container nonprofit-panel__inner" data-reveal>
+      <p class="nonprofit-panel__minimal-label">Independent nonprofit</p>
     </div>
   </section>
 </BaseLayout>

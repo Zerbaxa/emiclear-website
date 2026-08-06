@@ -1,21 +1,19 @@
 ---
-interface Props { lang?: "ko" | "en" }
-const { lang = "ko" } = Astro.props;
+interface Props { lang?: "ko" | "en"; overlay?: boolean }
+const { lang = "ko", overlay = false } = Astro.props;
 const isEnglish = lang === "en";
 const navigation = isEnglish
   ? [
       { href: "/en/about/", label: "About" },
-      { href: "/en/education/", label: "Education" },
-      { href: "/en/projects/", label: "Research & Projects" },
-      { href: "/en/news/", label: "News" },
-      { href: "/en/documents/", label: "Public Documents" },
+      { href: "/en/#programs", label: "Programs" },
+      { href: "/en/education/", label: "Resources" },
+      { href: "/en/projects/", label: "Education & Research", cta: true },
     ]
   : [
-      { href: "/about/", label: "단체소개" },
-      { href: "/education/", label: "교육자료" },
-      { href: "/projects/", label: "연구·프로젝트" },
-      { href: "/news/", label: "활동소식" },
-      { href: "/documents/", label: "공개문서" },
+      { href: "/about/", label: "소개" },
+      { href: "/#programs", label: "프로그램" },
+      { href: "/education/", label: "자료" },
+      { href: "/projects/", label: "교육·연구", cta: true },
     ];
 
 const pathname = Astro.url.pathname;
@@ -25,7 +23,7 @@ const languageHref = isEnglish
   : `/en${pathname === "/" ? "/" : pathname}`;
 ---
 
-<header class="site-header">
+<header class:list={["site-header", { "site-header--overlay": overlay }]}>
   <a class="skip-link" href="#main-content">{isEnglish ? "Skip to content" : "본문 바로가기"}</a>
   <div class="header-inner container">
     <a class="wordmark" href={homeHref} aria-label={isEnglish ? "EM-I-CLEAR home" : "EM-I-CLEAR 홈"}>
@@ -38,7 +36,7 @@ const languageHref = isEnglish
     </button>
     <nav id="primary-navigation" class="primary-nav" aria-label={isEnglish ? "Primary navigation" : "주요 메뉴"}>
       {navigation.map((item) => (
-        <a href={item.href} aria-current={pathname.startsWith(item.href) ? "page" : undefined}>{item.label}</a>
+        <a class:list={{ "nav-cta": item.cta }} href={item.href} aria-current={!item.href.includes("#") && pathname.startsWith(item.href) ? "page" : undefined}>{item.label}</a>
       ))}
       <a class="language-link" href={languageHref} lang={isEnglish ? "ko" : "en"}>{isEnglish ? "KO" : "EN"}</a>
     </nav>

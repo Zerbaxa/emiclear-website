@@ -3,26 +3,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
 ---
 
-<BaseLayout title="교육자료" description="EM-I-CLEAR가 검토한 응급의료 교육자료를 대상별로 제공합니다.">
-  <PageHero eyebrow="Education" title="검토된 응급의료 교육자료" description="교육 대상에 맞는 경로를 선택해 주세요. 공개 자료에는 근거, 검토 정보와 이용조건을 함께 표시합니다." />
+<BaseLayout title="교육자료" description="의료 제공자와 시민·교사를 위한 교육자료">
+  <PageHero eyebrow="Education" title="응급의료 교육자료" description="보건의료인과 일반인·보호자를 위한 교육 경로를 제공합니다." />
   <section class="section">
     <div class="container audience-grid">
-      <a class="audience-card" href="/education/clinicians/"><p class="eyebrow">For Clinicians</p><h3>보건의료인용 자료</h3><p>임상 현장에서 참고할 수 있는 교육자료와 근거 요약입니다.</p></a>
-      <a class="audience-card" href="/education/public/"><p class="eyebrow">For Public</p><h3>일반인·보호자용 자료</h3><p>응급상황과 응급실 진료를 이해하는 데 도움이 되는 안내입니다.</p></a>
+      <a class="audience-card" href="/education/clinicians/"><p class="eyebrow">For Clinicians</p><h3>보건의료인용 자료</h3><p>의료 제공자를 위한 교육자료와 근거 요약입니다.</p></a>
+      <a class="audience-card" href="/education/public/"><p class="eyebrow">For Public</p><h3>일반인·보호자용 자료</h3><p>시민·보호자·교사가 의료 이용과 건강관리를 이해하는 데 도움이 되는 안내입니다.</p></a>
     </div>
   </section>
-  <section class="section" style="background:#fff;">
-    <div class="container">
-      <div class="section-heading"><h2>자료 검색</h2><p>제목, 대상과 주제로 공개된 교육자료를 검색할 수 있습니다.</p></div>
-      <div class="search-panel"><div id="search"></div><p class="search-help">첫 교육자료가 공개되면 검색 결과가 표시됩니다.</p></div>
-    </div>
-  </section>
-  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-  <script is:inline src="/pagefind/pagefind-ui.js"></script>
-  <script is:inline>
-    window.addEventListener("DOMContentLoaded", () => {
-      if (window.PagefindUI) new window.PagefindUI({ element: "#search", showSubResults: true, translations: { placeholder: "교육자료 검색", zero_results: "검색 결과가 없습니다" } });
-    });
-  </script>
 </BaseLayout>
-

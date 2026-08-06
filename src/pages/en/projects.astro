@@ -1,11 +1,58 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import PageHero from "../../components/PageHero.astro";
-import EmptyState from "../../components/EmptyState.astro";
 ---
 
-<BaseLayout lang="en" title="Research & Projects" description="Emergency care research and innovation projects from EM-I-CLEAR.">
-  <PageHero eyebrow="Research & Projects" title="Turning questions from the field into research and change" description="Our work may include education, clinical procedures, point-of-care ultrasound and technology-supported improvement in emergency care." />
-  <section class="section"><div class="container"><EmptyState title="Projects are being prepared" description="Approved projects will be presented with their purpose, status and results." /></div></section>
-</BaseLayout>
+<BaseLayout lang="en" title="Education & Research" description="Education for providers, teachers, and the public; research from field questions; and technology development that expands access to care.">
+  <section class="lab-hero lab-hero--compact">
+    <div class="container lab-hero__copy" data-reveal>
+      <p class="section-label">Education &amp; Research</p>
+      <h1>Educate.<br />Research. Connect through technology.</h1>
+      <p>We educate providers, teachers, and the public, then carry field questions into research and technology development.</p>
+    </div>
+    <div class="container activity-index" data-reveal>
+      <a href="#simulation"><span>01 · Education</span><strong>Resident simulation education</strong><i>In progress</i></a>
+      <a href="#consultation-bot"><span>02 · Research</span><strong>Natural-language consultation bot</strong><i>In development</i></a>
+    </div>
+  </section>
 
+  <section class="lab-projects compact-projects" aria-label="Current education and research">
+    <article id="simulation" class="lab-project container">
+      <div class="project-copy" data-reveal>
+        <p class="chapter-index">01 <span>Education · In progress</span></p>
+        <h2>Resident<br />simulation education</h2>
+        <p>We conduct simulation education so residents can experience emergency scenarios, review team communication and decisions, and prepare for their next response.</p>
+        <a class="arrow-link" href="https://github.com/Zerbaxa/SIM_AMIS" target="_blank" rel="noreferrer">Open the SIM_AMIS repository <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="project-visual project-visual--simulation" data-reveal aria-label="An education flow from scenario to simulation and debriefing">
+        <div class="simulation-board">
+          <p>Resident simulation</p>
+          <ol><li><span>01</span><strong>Scenario</strong></li><li><span>02</span><strong>Simulation</strong></li><li><span>03</span><strong>Debrief</strong></li></ol>
+          <small>Experience · Reflect together · Prepare the next response</small>
+        </div>
+      </div>
+    </article>
+
+    <article id="consultation-bot" class="lab-project lab-project--reverse container">
+      <div class="project-copy" data-reveal>
+        <p class="chapter-index">02 <span>Research · In development</span></p>
+        <h2>Natural-language<br />consultation bot</h2>
+        <p>We are developing an automated consultation bot that organizes a patient's problem described in natural language and discusses whether the situation may require a hospital visit.</p>
+      </div>
+      <div class="project-visual project-visual--chat" data-reveal>
+        <div class="chat-device">
+          <div class="chat-device__head"><span class="brand-pip"></span><b>Consultation research</b><i>In development</i></div>
+          <div class="chat-bubble chat-bubble--user">Describe the problem in your own words.</div>
+          <div class="chat-bubble chat-bubble--assistant">The system organizes key symptoms and timing, then discusses whether a hospital visit may be needed.</div>
+          <div class="chat-device__input"><span>Describe the problem</span><b>↑</b></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="project-note">
+    <div class="container" data-reveal>
+      <span>Research note</span>
+      <p>The automated consultation bot is a research project in development. It does not replace clinical diagnosis or emergency care.</p>
+    </div>
+  </section>
+</BaseLayout>

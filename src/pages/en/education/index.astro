@@ -3,26 +3,12 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PageHero from "../../../components/PageHero.astro";
 ---
 
-<BaseLayout lang="en" title="Education" description="Reviewed emergency care education for healthcare professionals, patients and caregivers.">
-  <PageHero eyebrow="Education" title="Reviewed emergency care education" description="Choose the pathway that matches your needs. Published resources include evidence, review information and terms of use." />
+<BaseLayout lang="en" title="Education" description="Education resources for healthcare providers, teachers, and the public.">
+  <PageHero eyebrow="Education" title="Education resources" description="Choose a pathway for healthcare providers, teachers, caregivers, and the public." />
   <section class="section">
     <div class="container audience-grid">
-      <a class="audience-card" href="/en/education/clinicians/"><p class="eyebrow">For Clinicians</p><h3>Healthcare professionals</h3><p>Education and evidence summaries designed for emergency care practice.</p></a>
-      <a class="audience-card" href="/en/education/public/"><p class="eyebrow">For the Public</p><h3>Patients and caregivers</h3><p>Clear guidance for understanding emergencies and emergency department care.</p></a>
+      <a class="audience-card" href="/en/education/clinicians/"><p class="eyebrow">For Clinicians</p><h3>Healthcare professionals</h3><p>Education and evidence summaries for healthcare providers.</p></a>
+      <a class="audience-card" href="/en/education/public/"><p class="eyebrow">For the Public</p><h3>Public, caregivers, and teachers</h3><p>Guidance for using healthcare and caring for health.</p></a>
     </div>
   </section>
-  <section class="section" style="background:#fff;">
-    <div class="container">
-      <div class="section-heading"><h2>Search resources</h2><p>Search published education by title, audience or topic.</p></div>
-      <div class="search-panel"><div id="search"></div><p class="search-help">Search results will appear when the first English-language resource is published.</p></div>
-    </div>
-  </section>
-  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-  <script is:inline src="/pagefind/pagefind-ui.js"></script>
-  <script is:inline>
-    window.addEventListener("DOMContentLoaded", () => {
-      if (window.PagefindUI) new window.PagefindUI({ element: "#search", showSubResults: true, translations: { placeholder: "Search education", zero_results: "No results found" } });
-    });
-  </script>
 </BaseLayout>
-
