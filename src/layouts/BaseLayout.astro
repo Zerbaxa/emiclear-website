@@ -23,7 +23,7 @@ const organization = {
   name: isEnglish ? "Emergency Medicine Innovation — Clinical Learning, Education and Research" : "응급의학혁신교육연구회",
   alternateName: "EM-I-CLEAR",
   url: Astro.site?.toString(),
-  description: isEnglish ? "A nonprofit group for education, research and innovation in emergency care" : "응급의료 교육, 연구와 혁신을 위한 비영리 연구회",
+  description: isEnglish ? "A nonprofit group advancing education, research and innovation in emergency care for the public good" : "응급의료 교육, 연구와 혁신을 위한 비영리 연구회",
 };
 ---
 
@@ -35,6 +35,7 @@ const organization = {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0b1f33" />
+    <link rel="icon" type="image/svg+xml" href="/brand/emiclear-mark.svg" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="ko" href={new URL(isEnglish ? koreanPath : Astro.url.pathname, Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(isEnglish ? Astro.url.pathname : englishPath, Astro.site)} />

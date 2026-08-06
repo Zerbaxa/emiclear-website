@@ -47,10 +47,7 @@ h3 { font-size: 1.2rem; }
 .site-header { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid rgb(219 226 229 / .8); background: rgb(247 245 239 / .92); backdrop-filter: blur(16px); }
 .header-inner { min-height: 5.25rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 .wordmark { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; line-height: 1; }
-.brand-mark { position: relative; display: inline-block; width: 2rem; height: 2rem; flex: 0 0 auto; }
-.brand-ring { position: absolute; inset: .1rem; border: .22rem solid var(--teal-500); border-right-color: transparent; border-radius: 50%; transform: rotate(-12deg); }
-.brand-ring::after { content: ""; position: absolute; top: 50%; left: 50%; width: .32rem; height: .32rem; border-radius: 50%; background: var(--navy-900); transform: translate(-50%, -50%); }
-.brand-signal { position: absolute; right: -.02rem; top: .36rem; width: .48rem; height: .48rem; border: .12rem solid var(--off-white); border-radius: 50%; background: var(--coral-500); }
+.brand-mark { display: block; width: 2rem; height: 2rem; flex: 0 0 auto; }
 .wordmark-main, .footer-wordmark { color: var(--navy-900); font-family: "Manrope", sans-serif; font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; }
 .primary-nav { display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.5rem); }
 .primary-nav a { padding: .5rem 0; color: var(--navy-800); font-size: .92rem; font-weight: 600; text-decoration: none; }
@@ -113,6 +110,7 @@ h3 { font-size: 1.2rem; }
 .site-footer { padding-top: 3.5rem; color: #c8d5df; background: var(--navy-950); }
 .footer-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 3rem; }
 .footer-wordmark { margin-bottom: .4rem; color: var(--white); }
+.footer-local-name { color: #66c9c1; font-weight: 600; }
 .footer-note { color: #8fa1af; font-size: .9rem; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-block: 1.25rem; border-top: 1px solid rgb(255 255 255 / .1); color: #8fa1af; font-size: .78rem; }
 .footer-bottom p { margin: 0; }
