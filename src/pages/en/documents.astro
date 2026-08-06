@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import EmptyState from "../../components/EmptyState.astro";
+---
+
+<BaseLayout lang="en" title="Public Documents" description="Approved public documents and organizational information from EM-I-CLEAR.">
+  <PageHero eyebrow="Public Documents" title="Public documents" description="Approved documents are shared to support transparency in our nonprofit purpose and operations." />
+  <section class="section"><div class="container"><EmptyState title="Public documents are in preparation" description="Only approved documents are published. Personal data and internal administrative information are excluded." /></div></section>
+</BaseLayout>

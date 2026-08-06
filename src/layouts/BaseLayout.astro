@@ -13,13 +13,17 @@ const { title, description, lang = "ko" } = Astro.props;
 const siteName = "EM-I-CLEAR";
 const pageTitle = title === siteName ? title : `${title} | ${siteName}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(lang === "en" ? "/og-en.png" : "/og.png", Astro.site);
+const isEnglish = lang === "en";
+const koreanPath = Astro.url.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+const englishPath = `/en${Astro.url.pathname === "/" ? "/" : Astro.url.pathname}`;
 const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "응급의학혁신교육연구회",
+  name: isEnglish ? "Emergency Medicine Innovation — Clinical Learning, Education and Research" : "응급의학혁신교육연구회",
   alternateName: "EM-I-CLEAR",
   url: Astro.site?.toString(),
-  description: "응급의료 교육, 연구와 혁신을 위한 비영리 연구회",
+  description: isEnglish ? "A nonprofit group for education, research and innovation in emergency care" : "응급의료 교육, 연구와 혁신을 위한 비영리 연구회",
 };
 ---
 
@@ -32,6 +36,8 @@ const organization = {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0b1f33" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="ko" href={new URL(isEnglish ? koreanPath : Astro.url.pathname, Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(isEnglish ? Astro.url.pathname : englishPath, Astro.site)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -41,14 +47,19 @@ const organization = {
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={isEnglish ? "EM-I-CLEAR — Education, research and innovation for better emergency care" : "EM-I-CLEAR — 더 나은 응급의료를 위한 교육, 연구, 혁신"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(organization)} />
   </head>
   <body>
-    <Header />
+    <Header lang={lang} />
     <main id="main-content" data-pagefind-body>
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

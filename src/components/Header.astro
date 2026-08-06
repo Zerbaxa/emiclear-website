@@ -1,31 +1,49 @@
 ---
-const navigation = [
-  { href: "/about/", label: "단체소개" },
-  { href: "/education/", label: "교육자료" },
-  { href: "/projects/", label: "연구·프로젝트" },
-  { href: "/news/", label: "활동소식" },
-  { href: "/documents/", label: "공개문서" },
-];
+interface Props { lang?: "ko" | "en" }
+const { lang = "ko" } = Astro.props;
+const isEnglish = lang === "en";
+const navigation = isEnglish
+  ? [
+      { href: "/en/about/", label: "About" },
+      { href: "/en/education/", label: "Education" },
+      { href: "/en/projects/", label: "Research & Projects" },
+      { href: "/en/news/", label: "News" },
+      { href: "/en/documents/", label: "Public Documents" },
+    ]
+  : [
+      { href: "/about/", label: "단체소개" },
+      { href: "/education/", label: "교육자료" },
+      { href: "/projects/", label: "연구·프로젝트" },
+      { href: "/news/", label: "활동소식" },
+      { href: "/documents/", label: "공개문서" },
+    ];
 
 const pathname = Astro.url.pathname;
+const homeHref = isEnglish ? "/en/" : "/";
+const languageHref = isEnglish
+  ? pathname.replace(/^\/en(?=\/|$)/, "") || "/"
+  : `/en${pathname === "/" ? "/" : pathname}`;
 ---
 
 <header class="site-header">
-  <a class="skip-link" href="#main-content">본문 바로가기</a>
+  <a class="skip-link" href="#main-content">{isEnglish ? "Skip to content" : "본문 바로가기"}</a>
   <div class="header-inner container">
-    <a class="wordmark" href="/" aria-label="EM-I-CLEAR 홈">
+    <a class="wordmark" href={homeHref} aria-label={isEnglish ? "EM-I-CLEAR home" : "EM-I-CLEAR 홈"}>
+      <span class="brand-mark" aria-hidden="true">
+        <span class="brand-ring"></span>
+        <span class="brand-signal"></span>
+      </span>
       <span class="wordmark-main">EM-I-CLEAR</span>
-      <span class="wordmark-sub">응급의학혁신교육연구회</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
-      <span class="sr-only">메뉴 열기</span>
+      <span class="sr-only">{isEnglish ? "Open menu" : "메뉴 열기"}</span>
       <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
-    <nav id="primary-navigation" class="primary-nav" aria-label="주요 메뉴">
+    <nav id="primary-navigation" class="primary-nav" aria-label={isEnglish ? "Primary navigation" : "주요 메뉴"}>
       {navigation.map((item) => (
         <a href={item.href} aria-current={pathname.startsWith(item.href) ? "page" : undefined}>{item.label}</a>
       ))}
-      <a class="language-link" href="/en/" lang="en">EN</a>
+      <a class="language-link" href={languageHref} lang={isEnglish ? "ko" : "en"}>{isEnglish ? "KO" : "EN"}</a>
     </nav>
   </div>
 </header>
@@ -48,4 +66,3 @@ const pathname = Astro.url.pathname;
   navigation?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
   document.addEventListener("keydown", (event) => event.key === "Escape" && closeMenu());
 </script>
-
