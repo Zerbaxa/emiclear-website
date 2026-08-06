@@ -1,0 +1,51 @@
+---
+const navigation = [
+  { href: "/about/", label: "단체소개" },
+  { href: "/education/", label: "교육자료" },
+  { href: "/projects/", label: "연구·프로젝트" },
+  { href: "/news/", label: "활동소식" },
+  { href: "/documents/", label: "공개문서" },
+];
+
+const pathname = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <a class="skip-link" href="#main-content">본문 바로가기</a>
+  <div class="header-inner container">
+    <a class="wordmark" href="/" aria-label="EM-I-CLEAR 홈">
+      <span class="wordmark-main">EM-I-CLEAR</span>
+      <span class="wordmark-sub">응급의학혁신교육연구회</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+      <span class="sr-only">메뉴 열기</span>
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
+    <nav id="primary-navigation" class="primary-nav" aria-label="주요 메뉴">
+      {navigation.map((item) => (
+        <a href={item.href} aria-current={pathname.startsWith(item.href) ? "page" : undefined}>{item.label}</a>
+      ))}
+      <a class="language-link" href="/en/" lang="en">EN</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
+  const navigation = document.querySelector<HTMLElement>("#primary-navigation");
+
+  const closeMenu = () => {
+    toggle?.setAttribute("aria-expanded", "false");
+    navigation?.classList.remove("is-open");
+  };
+
+  toggle?.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!expanded));
+    navigation?.classList.toggle("is-open", !expanded);
+  });
+
+  navigation?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (event) => event.key === "Escape" && closeMenu());
+</script>
+

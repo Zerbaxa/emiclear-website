@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://excist.dothome.co.kr/sitemap-index.xml
+

@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import EmptyState from "../components/EmptyState.astro";
+---
+
+<BaseLayout title="공개문서" description="EM-I-CLEAR의 공개가 승인된 문서와 운영정보">
+  <PageHero eyebrow="Public Documents" title="공개문서" description="비영리 목적과 운영의 투명성을 위해 공개가 승인된 문서를 제공합니다." />
+  <section class="section"><div class="container"><EmptyState title="공개문서를 준비하고 있습니다" description="개인정보와 내부 행정정보를 제외하고 공개가 승인된 문서만 게시합니다." /></div></section>
+</BaseLayout>
+

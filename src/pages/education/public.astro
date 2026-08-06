@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import EmptyState from "../../components/EmptyState.astro";
+---
+
+<BaseLayout title="일반인·보호자용 교육자료" description="일반인과 보호자를 위한 검토된 응급의료 안내">
+  <PageHero eyebrow="For Public" title="일반인·보호자용 교육자료" description="응급상황을 이해하고 적절한 도움을 요청할 수 있도록 쉬운 말과 명확한 행동 안내를 제공합니다." />
+  <section class="section">
+    <div class="container">
+      <div class="notice"><strong>의료정보 안내</strong><p>이 사이트의 교육자료는 일반적인 정보 제공을 목적으로 하며, 개인의 진단이나 치료를 대신하지 않습니다. 응급상황에서는 119 또는 가까운 응급의료기관의 도움을 받으세요.</p></div>
+      <div style="height:1.5rem"></div>
+      <EmptyState description="내부 검토를 마친 일반인·보호자용 자료부터 순차적으로 공개합니다." />
+    </div>
+  </section>
+</BaseLayout>
+

@@ -1,0 +1,54 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: "ko" | "en";
+}
+
+const { title, description, lang = "ko" } = Astro.props;
+const siteName = "EM-I-CLEAR";
+const pageTitle = title === siteName ? title : `${title} | ${siteName}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "응급의학혁신교육연구회",
+  alternateName: "EM-I-CLEAR",
+  url: Astro.site?.toString(),
+  description: "응급의료 교육, 연구와 혁신을 위한 비영리 연구회",
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b1f33" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>{pageTitle}</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json" set:html={JSON.stringify(organization)} />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content" data-pagefind-body>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

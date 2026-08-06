@@ -1,0 +1,18 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "자료를 준비하고 있습니다",
+  description = "내부 검토와 공개 승인을 마친 콘텐츠부터 순차적으로 제공하겠습니다.",
+} = Astro.props;
+---
+
+<div class="empty-state" role="status">
+  <span class="signal-dot" aria-hidden="true"></span>
+  <h2>{title}</h2>
+  <p>{description}</p>
+</div>
+
