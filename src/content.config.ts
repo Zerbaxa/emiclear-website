@@ -17,15 +17,5 @@ const education = defineCollection({
   }),
 });
 
-const news = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/news" }),
-  schema: z.object({
-    title: z.string(),
-    summary: z.string(),
-    publishedAt: z.coerce.date(),
-    draft: z.boolean().default(true),
-  }),
-});
-
-export const collections = { education, news };
+export const collections = { education };
 

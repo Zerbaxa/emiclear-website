@@ -1,18 +1,18 @@
 ---
-interface Props { lang?: "ko" | "en"; overlay?: boolean }
-const { lang = "ko", overlay = false } = Astro.props;
+interface Props { lang?: "ko" | "en"; overlay?: boolean; hasTranslation?: boolean }
+const { lang = "ko", overlay = false, hasTranslation = true } = Astro.props;
 const isEnglish = lang === "en";
 const navigation = isEnglish
   ? [
       { href: "/en/about/", label: "About" },
-      { href: "/en/#programs", label: "Programs" },
-      { href: "/en/education/", label: "Resources" },
+      { href: "/en/#approach", label: "Our Approach" },
+      { href: "/en/education/", label: "Education" },
       { href: "/en/projects/", label: "Education & Research", cta: true },
     ]
   : [
       { href: "/about/", label: "소개" },
-      { href: "/#programs", label: "프로그램" },
-      { href: "/education/", label: "자료" },
+      { href: "/#approach", label: "우리의 방식" },
+      { href: "/education/", label: "교육자료" },
       { href: "/projects/", label: "교육·연구", cta: true },
     ];
 
@@ -27,8 +27,12 @@ const languageHref = isEnglish
   <a class="skip-link" href="#main-content">{isEnglish ? "Skip to content" : "본문 바로가기"}</a>
   <div class="header-inner container">
     <a class="wordmark" href={homeHref} aria-label={isEnglish ? "EM-I-CLEAR home" : "EM-I-CLEAR 홈"}>
-      <img class="brand-mark" src="/brand/emiclear-mark.svg" alt="" width="32" height="32" />
-      <span class="wordmark-main">EM-I-CLEAR</span>
+      <img class="brand-mark brand-mark--color" src="/brand/emiclear-mark.svg" alt="" width="32" height="32" />
+      <img class="brand-mark brand-mark--white" src="/brand/emiclear-mark-white.svg" alt="" width="32" height="32" />
+      <span class="wordmark-text">
+        <span class="wordmark-main">EM-I-CLEAR</span>
+        {!isEnglish && <span class="wordmark-ko">응급의학혁신교육연구회</span>}
+      </span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
       <span class="sr-only">{isEnglish ? "Open menu" : "메뉴 열기"}</span>
@@ -36,9 +40,11 @@ const languageHref = isEnglish
     </button>
     <nav id="primary-navigation" class="primary-nav" aria-label={isEnglish ? "Primary navigation" : "주요 메뉴"}>
       {navigation.map((item) => (
-        <a class:list={{ "nav-cta": item.cta }} href={item.href} aria-current={!item.href.includes("#") && pathname.startsWith(item.href) ? "page" : undefined}>{item.label}</a>
+        <a class:list={{ "nav-cta": item.cta }} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>{item.label}</a>
       ))}
-      <a class="language-link" href={languageHref} lang={isEnglish ? "ko" : "en"}>{isEnglish ? "KO" : "EN"}</a>
+      {hasTranslation && (
+        <a class="language-link" href={languageHref} hreflang={isEnglish ? "ko" : "en"} lang={isEnglish ? "ko" : "en"}>{isEnglish ? "KO" : "EN"}</a>
+      )}
     </nav>
   </div>
 </header>

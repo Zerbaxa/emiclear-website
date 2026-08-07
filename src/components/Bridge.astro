@@ -1,0 +1,36 @@
+---
+interface Props { lang?: "ko" | "en" }
+const { lang = "ko" } = Astro.props;
+const isEnglish = lang === "en";
+const t = isEnglish
+  ? { provider: "Providers", public: "Patients", eyebrow: "What closes the gap", means: "Education · Technology" }
+  : { provider: "의료 제공자", public: "의료수요자", eyebrow: "무엇이 좁히는가", means: "교육 · 기술" };
+
+// 로고 심볼과 같은 심전도 파형. 가운데에서 양쪽으로 뻗어 두 주체를 안쪽으로 당긴다.
+const line = "M22 20 H92 Q98 13 104 20 H110 L113 25 L117 7 L121 33 L124 20 H132 Q138 12 144 20 H218";
+const tips = "M30 13 L22 20 L30 27 M210 13 L218 20 L210 27";
+---
+
+<div class="bridge">
+  <div class="bridge__grid">
+    <div class="bridge__side bridge__side--provider">
+      <p class="bridge__who" set:html={t.provider} />
+    </div>
+
+    <div class="bridge__middle">
+      <p class="bridge__eyebrow">{t.eyebrow}</p>
+      <p class="bridge__means">{t.means}</p>
+      <div class="bridge__sig">
+        <svg viewBox="0 0 240 40" aria-hidden="true">
+          <path class="bridge__line" pathLength="1" d={line} fill="none" stroke="var(--brand-teal)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <path class="bridge__tip" pathLength="1" d={tips} fill="none" stroke="var(--brand-teal)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <circle class="bridge__dot" cx="117" cy="7" r="3.6" fill="var(--brand-coral)" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="bridge__side bridge__side--public">
+      <p class="bridge__who" set:html={t.public} />
+    </div>
+  </div>
+</div>

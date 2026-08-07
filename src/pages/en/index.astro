@@ -1,15 +1,16 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Bridge from "../../components/Bridge.astro";
 ---
 
-<BaseLayout lang="en" title="EM-I-CLEAR" description="A mission-driven, independent nonprofit association based in the Republic of Korea, advancing public benefit through education, research, and responsible technology.">
+<BaseLayout lang="en" title="EM-I-CLEAR" description="An independent nonprofit closing the gap the system leaves between people who suddenly need care and the people who can give it — through education, research, and responsible technology.">
   <section class="story-hero story-hero--home">
     <div class="container story-hero__content">
-      <p class="hero-label">Mission-driven nonprofit · Republic of Korea</p>
-      <h1>Care should reach<br />everyone.</h1>
-      <p class="story-hero__lead">We narrow gaps in care through education, research, and responsible technology.</p>
+      <p class="hero-label">Independent nonprofit · Republic of Korea</p>
+      <h1>For a world where<br />no one has to suffer.</h1>
+      <p class="story-hero__lead">We close the gap the system leaves between people who suddenly need care and the people who can give it.</p>
       <div class="hero-actions">
-        <a class="button button-solid" href="#story">See our story</a>
+        <a class="button button-solid" href="#story">What we do</a>
         <a class="button button-ghost" href="/en/projects/">Education &amp; Research</a>
       </div>
     </div>
@@ -18,24 +19,35 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section id="opening" class="opening-statement">
     <div class="container opening-statement__inner" data-reveal>
-      <p class="section-label">Why we exist</p>
-      <h2>Care begins<br />before the hospital.</h2>
-      <p>We connect families, schools, communities, and healthcare so people can recognize needs earlier and respond better.</p>
+      <p class="section-label">The problem we see</p>
+      <h2>It is not the people.<br />It is the system.</h2>
+      <p>Inside the hospital, the gaps no single doctor can fill keep piling up. From outside, none of that is visible. Where the system that should connect people has stopped working, a gap has opened.</p>
+    </div>
+  </section>
+
+  <section id="approach" class="section section--alt">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <p class="section-label">Our approach</p>
+        <h2>One step,<br />from each side.</h2>
+        <p>Between someone who suddenly falls ill and the people who could help, there is a gap the system never filled. We close it from both sides.</p>
+      </div>
+      <Bridge lang="en" />
     </div>
   </section>
 
   <section id="story" class="story-sequence" aria-label="What EM-I-CLEAR does">
     <article id="programs" class="story-chapter container">
-      <figure class="story-media" data-reveal>
+      <figure class="story-media story-media--phone" data-reveal>
         <span class="story-media__index" aria-hidden="true">01</span>
-        <img src="/images/pediatric-tools-pexels-4491759.jpg" alt="Toy medical tools used for child-friendly health education" width="2000" height="3000" loading="lazy" />
-        <figcaption>Health education that begins at a child's level</figcaption>
+        <img src="/images/smartphone-unsplash-1678522345215.jpg" alt="A hand looking at a smartphone" width="2400" height="1600" loading="lazy" />
+        <figcaption>Being able to describe what is wrong.</figcaption>
       </figure>
       <div class="story-copy" data-reveal>
-        <p class="chapter-label">Core program · Children &amp; Adolescents</p>
-        <h3>Start with those<br />most vulnerable.</h3>
-        <p>We help children and adolescents be recognized earlier, receive safer responses, and build the knowledge to protect their own health.</p>
-        <a class="arrow-link" href="/en/education/public/">Explore public resources <span aria-hidden="true">↗</span></a>
+        <p class="chapter-label">Technology · Toward the provider</p>
+        <h3>Technology<br />closes the gap.</h3>
+        <p>We help people take stock of their own condition and put it into the language of medicine, and work out with them whether this is a moment that needs a clinician.</p>
+        <a class="arrow-link" href="/en/projects/#technology">Emergency decision support <span aria-hidden="true">↗</span></a>
       </div>
     </article>
 
@@ -43,27 +55,27 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <figure class="story-media story-media--portrait" data-reveal>
         <span class="story-media__index" aria-hidden="true">02</span>
         <img src="/images/empty-classroom-pexels-30105084.jpg" alt="An empty learning space filled with sunlight" width="2200" height="2933" loading="lazy" />
-        <figcaption>A place where learning becomes preparedness</figcaption>
+        <figcaption>More people who can carry the load.</figcaption>
       </figure>
       <div class="story-copy" data-reveal>
-        <p class="chapter-label">Learn &amp; Prepare</p>
-        <h3>Prepared people<br />provide better care.</h3>
-        <p>We educate healthcare providers, teachers, and the public to support better care and more appropriate use of healthcare.</p>
-        <a class="arrow-link" href="/en/education/">Explore education <span aria-hidden="true">↗</span></a>
+        <p class="chapter-label">Education · Toward the patient</p>
+        <h3>We train the people<br />who provide care.</h3>
+        <p>Residents and medical students work through emergencies again and again, then look back together at the decisions they made and at how the team communicated.</p>
+        <a class="arrow-link" href="/en/projects/#education">Simulation education <span aria-hidden="true">↗</span></a>
       </div>
     </article>
 
     <article class="story-chapter container">
-      <figure class="story-media story-media--phone" data-reveal>
+      <figure class="story-media" data-reveal>
         <span class="story-media__index" aria-hidden="true">03</span>
-        <img src="/images/smartphone-unsplash-1678522345215.jpg" alt="A hand looking at a smartphone" width="2400" height="1600" loading="lazy" />
-        <figcaption>Helping people reach the next help.</figcaption>
+        <img src="/images/pediatric-tools-pexels-4491759.jpg" alt="Toy medical tools used for child-friendly health education" width="2000" height="3000" loading="lazy" />
+        <figcaption>Starting where the gap is widest.</figcaption>
       </figure>
       <div class="story-copy" data-reveal>
-        <p class="chapter-label">Research &amp; Technology</p>
-        <h3>Technology can<br />narrow the gap.</h3>
-        <p>We use AI and other technologies to lower geographic, language, and cultural barriers and expand people’s experience of care.</p>
-        <a class="arrow-link" href="/en/projects/">Explore education &amp; research <span aria-hidden="true">↗</span></a>
+        <p class="chapter-label">Priority · Children &amp; adolescents</p>
+        <h3>We start<br />here.</h3>
+        <p>When no hospital can accept a patient, children and adolescents are turned away first. This is where the gap has opened widest.</p>
+        <a class="arrow-link" href="/en/about/">The problem we see <span aria-hidden="true">↗</span></a>
       </div>
     </article>
   </section>

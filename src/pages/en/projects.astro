@@ -1,58 +1,142 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const projects = [
+  { name: "Simulation education", area: "Provider education", status: "In progress", desc: "We build the simulated record system, the scenarios and the teaching materials ourselves." },
+  { name: "Pediatric point-of-care ultrasound", area: "Provider education · Research", status: "In progress", desc: "Does how we teach it change how accurately it is diagnosed?" },
+  { name: "Emergency decision support", area: "Technology", status: "In development", desc: "Describe what is wrong; it tells you how urgent this looks and puts it into clinical language." },
+  { name: "Pre-consultation interview", area: "Technology", status: "In design", desc: "Turning what is asked during the wait into something usable in the record." },
+  { name: "Emergency department finder", area: "Technology", status: "Planned", desc: "Where you can actually reach from here, with pediatric availability and opening hours." },
+  { name: "Childhood injury prevention", area: "Public education", status: "Planned", desc: "How not to get hurt, in the form children actually watch." },
+  { name: "Adolescent mental health assessment", area: "Public education · Technology", status: "Planned", desc: "Self-assessment tools and digital therapeutics." },
+];
 ---
 
-<BaseLayout lang="en" title="Education & Research" description="Education for providers, teachers, and the public; research from field questions; and technology development that expands access to care.">
+<BaseLayout lang="en" title="Education & Research" description="We train providers, share what people need to protect themselves, connect the two with technology, and use research to check that the connection holds.">
   <section class="lab-hero lab-hero--compact">
     <div class="container lab-hero__copy" data-reveal>
       <p class="section-label">Education &amp; Research</p>
-      <h1>Educate.<br />Research. Connect through technology.</h1>
-      <p>We educate providers, teachers, and the public, then carry field questions into research and technology development.</p>
-    </div>
-    <div class="container activity-index" data-reveal>
-      <a href="#simulation"><span>01 · Education</span><strong>Resident simulation education</strong><i>In progress</i></a>
-      <a href="#consultation-bot"><span>02 · Research</span><strong>Natural-language consultation bot</strong><i>In development</i></a>
+      <h1>We work in<br />four directions.</h1>
+      <p>We train people, share what they need to protect themselves, connect the two with technology, and use research to check that the connection actually holds.</p>
     </div>
   </section>
 
-  <section class="lab-projects compact-projects" aria-label="Current education and research">
-    <article id="simulation" class="lab-project container">
+  <section class="lab-projects compact-projects" aria-label="Areas of work">
+    <article id="education" class="lab-project container">
       <div class="project-copy" data-reveal>
-        <p class="chapter-index">01 <span>Education · In progress</span></p>
-        <h2>Resident<br />simulation education</h2>
-        <p>We conduct simulation education so residents can experience emergency scenarios, review team communication and decisions, and prepare for their next response.</p>
-        <a class="arrow-link" href="https://github.com/Zerbaxa/SIM_AMIS" target="_blank" rel="noreferrer">Open the SIM_AMIS repository <span aria-hidden="true">↗</span></a>
+        <p class="chapter-index">01 <span>Provider education</span></p>
+        <h2>We train the people<br />who provide care.</h2>
+        <p>We run simulation education for pediatric and emergency medicine residents and for medical students. We build a simulated electronic medical record where learners place real orders and read real results, and we develop the scenarios and teaching materials to match.</p>
+        <p>The scenarios cover situations where judgment diverges and time changes the outcome &mdash; respiratory distress, major trauma, status epilepticus, sepsis. What was ordered and what was missed is recorded, and going through that record together is the debriefing.</p>
       </div>
-      <div class="project-visual project-visual--simulation" data-reveal aria-label="An education flow from scenario to simulation and debriefing">
-        <div class="simulation-board">
-          <p>Resident simulation</p>
-          <ol><li><span>01</span><strong>Scenario</strong></li><li><span>02</span><strong>Simulation</strong></li><li><span>03</span><strong>Debrief</strong></li></ol>
-          <small>Experience · Reflect together · Prepare the next response</small>
+      <div class="project-visual project-visual--simulation" data-reveal>
+        <div class="simulation-board" role="img" aria-label="Simulation flow in the simulated medical record: assess the patient, place orders, wait for results, reassess, and debrief from the order log">
+          <p>Simulated medical record</p>
+          <ol>
+            <li><span>01</span><strong>Assess</strong><em>Complaint · history · vital signs</em></li>
+            <li><span>02</span><strong>Order</strong><em>Blood work · blood gas · imaging</em></li>
+            <li><span>03</span><strong>Wait</strong><em>Each test takes the time it really takes</em></li>
+            <li><span>04</span><strong>Reassess</strong><em>Watch the patient change across rounds</em></li>
+            <li><span>05</span><strong>Debrief</strong><em>Go through the order log together</em></li>
+          </ol>
+          <ul class="sim-timing" aria-label="Turnaround time by test">
+            <li>Blood gas 1 min</li><li>Blood work 2 min</li><li>CT 8 min</li><li>Culture pending</li>
+          </ul>
+          <small>What you did not order, you never find out. What you do while waiting is part of the training.</small>
         </div>
       </div>
     </article>
 
-    <article id="consultation-bot" class="lab-project lab-project--reverse container">
+    <article id="technology" class="lab-project lab-project--reverse container">
       <div class="project-copy" data-reveal>
-        <p class="chapter-index">02 <span>Research · In development</span></p>
-        <h2>Natural-language<br />consultation bot</h2>
-        <p>We are developing an automated consultation bot that organizes a patient's problem described in natural language and discusses whether the situation may require a hospital visit.</p>
+        <p class="chapter-index">02 <span>Technology</span></p>
+        <h2>From the patient's words<br />into clinical language.</h2>
+        <p>Describe what is wrong in your own words. The tool asks follow-up questions the way a clinical interview does, sets out the key symptoms and how they have changed, and tells you whether this looks urgent. Where it is needed, it walks through the first aid that can be given at home and points to the nearest emergency department.</p>
+        <p>What it sets out is written in language a clinician can read straight away. If that record carries through after arrival at the emergency department, someone who is genuinely urgent does not have to tell the whole story again from the beginning.</p>
+        <p><small>This tool provides reasoning and recommendations. The final decision rests with the person using it, and it does not replace diagnosis or emergency judgment.</small></p>
       </div>
       <div class="project-visual project-visual--chat" data-reveal>
         <div class="chat-device">
-          <div class="chat-device__head"><span class="brand-pip"></span><b>Consultation research</b><i>In development</i></div>
-          <div class="chat-bubble chat-bubble--user">Describe the problem in your own words.</div>
-          <div class="chat-bubble chat-bubble--assistant">The system organizes key symptoms and timing, then discusses whether a hospital visit may be needed.</div>
-          <div class="chat-device__input"><span>Describe the problem</span><b>↑</b></div>
+          <div class="chat-device__head"><span class="brand-pip"></span><b>Emergency decision support</b><i>In development</i></div>
+          <div class="chat-bubble chat-bubble--user">Since yesterday my stomach hurts and I have a fever.</div>
+          <div class="chat-bubble chat-bubble--assistant">Which part of the abdomen hurts most? Any vomiting or diarrhea with it?</div>
+          <div class="chat-bubble chat-bubble--assistant">How high has the fever gone, and does it come down with fever medicine?</div>
+          <div class="chat-summary">
+            <span>Passed to the clinician</span>
+            <p>RLQ pain 12 h · fever 38.9℃ · vomiting ×2 · partial response to antipyretics</p>
+          </div>
+          <div class="chat-device__input"><span>Describe how you feel, in your own words</span><b>↑</b></div>
         </div>
       </div>
     </article>
+
+    <article id="public-education" class="lab-project container">
+      <div class="project-copy" data-reveal>
+        <p class="chapter-index">03 <span>Public education</span></p>
+        <h2>Sharing what people need<br />to protect themselves.</h2>
+        <p>We create resources so that citizens, caregivers and teachers can look after their own health and the health of the people beside them. The format and the depth change with who is reading.</p>
+        <p>For children, how not to get hurt, in the form children actually watch. For caregivers, what to worry about and which signs to watch. For adolescents, how to recognize a crisis in themselves and in a friend, and how to ask for help.</p>
+      </div>
+      <div class="project-visual project-visual--youth" data-reveal>
+        <div class="simulation-board" role="img" aria-label="Public education by audience: children, caregivers, adolescents">
+          <p>Made for the reader</p>
+          <ol>
+            <li><span>Children</span><strong>How not to get hurt</strong><em>Animation · comics</em></li>
+            <li><span>Caregivers</span><strong>What to worry about</strong><em>Signs to watch · when to go</em></li>
+            <li><span>Adolescents</span><strong>Recognizing a crisis</strong><em>Mental health · what a bystander can do</em></li>
+          </ol>
+          <small>Child-rearing and developmental health are covered alongside.</small>
+        </div>
+      </div>
+    </article>
+
+    <article id="research" class="lab-project lab-project--reverse container">
+      <div class="project-copy" data-reveal>
+        <p class="chapter-index">04 <span>Research</span></p>
+        <h2>Checking that<br />the method holds.</h2>
+        <p>We ask whether changing how we teach changes what happens to patients. Children cannot explain their symptoms, cooperate poorly with testing and are more vulnerable to radiation, which is exactly why ultrasound performed at the bedside is so useful. How to teach it is the research question.</p>
+        <p>The other axis is artificial intelligence and machine learning. This is not the first such attempt. We do it because this is the fastest way to cover the gaps where people are missing.</p>
+        <p><small>Research is conducted under the approval of the performing institution's IRB, and patient data is handled in anonymized form.</small></p>
+      </div>
+      <div class="project-visual project-visual--check" data-reveal>
+        <div class="simulation-board" role="img" aria-label="Structure of the pediatric point-of-care ultrasound education study: participants, tool, comparison, conditions, outcome">
+          <p>Testing how we teach</p>
+          <ol>
+            <li><span>Who</span><strong>Anyone who treats children</strong><em>Residents · specialists · primary care</em></li>
+            <li><span>Tool</span><strong>Point-of-care ultrasound</strong><em>At the bedside, immediately</em></li>
+            <li><span>Compare</span><strong>Teaching method</strong><em>Apprenticeship · structured curriculum</em></li>
+            <li><span>Conditions</span><strong>Intussusception · testicular torsion</strong><em>Where speed changes the outcome</em></li>
+            <li><span>Outcome</span><strong>Sensitivity · specificity</strong><em>Measured diagnostic accuracy</em></li>
+          </ol>
+          <small>Does a change in how we teach change what happens to the patient?</small>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="project-index">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <p class="section-label">Projects</p>
+        <h2>What we are working on.</h2>
+        <p>We separate what is under way from what is still at the planning stage. Completed work stays here too.</p>
+      </div>
+      <div class="project-index__list" data-reveal>
+        {projects.map((p) => (
+          <div class="project-index__row">
+            <h3>{p.name}</h3>
+            <span class="status">{p.status}</span>
+            <p>{p.area} &middot; {p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 
   <section class="project-note">
     <div class="container" data-reveal>
       <span>Research note</span>
-      <p>The automated consultation bot is a research project in development. It does not replace clinical diagnosis or emergency care.</p>
+      <p>Emergency decision support is a research project in development and is not available to the public. It does not replace clinical diagnosis or emergency care.</p>
     </div>
   </section>
 </BaseLayout>

@@ -3,12 +3,52 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PageHero from "../../../components/PageHero.astro";
 ---
 
-<BaseLayout lang="en" title="Education" description="Education resources for healthcare providers, teachers, and the public.">
-  <PageHero eyebrow="Education" title="Education resources" description="Choose a pathway for healthcare providers, teachers, caregivers, and the public." />
+<BaseLayout lang="en" title="Education" description="Reviewed education resources for healthcare professionals, patients and caregivers, with evidence and review dates attached.">
+  <PageHero eyebrow="Education" title="We publish only what has been reviewed." description="We create education resources for healthcare professionals and for patients and caregivers. Every resource carries its evidence and its review dates." />
+
   <section class="section">
-    <div class="container audience-grid">
-      <a class="audience-card" href="/en/education/clinicians/"><p class="eyebrow">For Clinicians</p><h3>Healthcare professionals</h3><p>Education and evidence summaries for healthcare providers.</p></a>
-      <a class="audience-card" href="/en/education/public/"><p class="eyebrow">For the Public</p><h3>Public, caregivers, and teachers</h3><p>Guidance for using healthcare and caring for health.</p></a>
+    <div class="container content-grid">
+      <h2>Who each<br />resource is for.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">Audiences</p>
+        <div class="principles">
+          <article class="principle">
+            <h3>Healthcare professionals</h3>
+            <p>Resources state clinical scope and limitations plainly, with references and review information attached.</p>
+          </article>
+          <article class="principle">
+            <h3>Patients and caregivers</h3>
+            <p>Plain language and clear guidance on what to watch for and when to ask for help.</p>
+          </article>
+        </div>
+        <div class="notice">
+          <strong>Medical information notice</strong>
+          <p>Resources on this site provide general education and do not replace individual diagnosis or treatment. In an emergency in the Republic of Korea, call <strong>119</strong> or go to the nearest emergency department.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>How we handle<br />our material.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">Principles</p>
+        <div class="principles">
+          <article class="principle">
+            <h3>Evidence and review dates travel with the resource</h3>
+            <p>Every resource carries its references, the date it was published, the date it was last reviewed, and the date it is due for review again. Medical information changes with time. Drafts that have not completed review are never published.</p>
+          </article>
+          <article class="principle">
+            <h3>Published in the name of the organization</h3>
+            <p>We do not publish the names of individual authors or reviewers. What we release is the result of the organization's review, not one person's opinion.</p>
+          </article>
+          <article class="principle">
+            <h3>No derivative works</h3>
+            <p>Educational content is released under CC BY-NC-ND 4.0. We do not permit modification, so that reviewed material cannot be edited and circulated in a different context. Where translation is needed, EM-I-CLEAR provides a reviewed translation directly.</p>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>

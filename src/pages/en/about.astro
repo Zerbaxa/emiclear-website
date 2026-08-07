@@ -1,26 +1,121 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import Bridge from "../../components/Bridge.astro";
 ---
 
-<BaseLayout lang="en" title="About" description="EM-I-CLEAR is a mission-driven, independent nonprofit association based in the Republic of Korea.">
-  <PageHero eyebrow="About Our Nonprofit" title="Care should reach everyone." description="EM-I-CLEAR is an independent nonprofit connecting people to needed care through education, research, and responsible technology." />
+<BaseLayout lang="en" title="About" description="Between someone who suddenly falls ill and the people who could help, there is a gap the system never filled. EM-I-CLEAR is an independent nonprofit that closes it from both sides.">
+  <PageHero eyebrow="About Us" title="We close the gap." description="Between someone who suddenly falls ill and the people who could help, there is a gap the system never filled. EM-I-CLEAR is an independent nonprofit that closes it from both sides." />
+
   <section class="section">
     <div class="container content-grid">
-      <h2>EM-I-CLEAR</h2>
-      <div class="prose">
-        <p><strong>EM-I-CLEAR</strong> stands for <span lang="en">Emergency Medicine Initiative for Clinical Learning, Education, Artificial Intelligence, and Research</span>.</p>
-        <p class="section-label about-focus-label">Our focus</p>
-        <p class="about-focus">We narrow the gap in care.</p>
-        <p>We help people reach the knowledge and appropriate support they need, when they need it.</p>
-        <div class="about-activities">
-          <p class="section-label">What we do</p>
-          <div class="principles">
-            <article class="principle"><h3>Education</h3><p>We educate healthcare providers, teachers, and the public to support better care and more appropriate use of healthcare.</p></article>
-            <article class="principle"><h3>Research</h3><p>We develop educational tools, conduct academic research, and convene conferences and workshops for better care.</p></article>
-            <article class="principle"><h3>Technology</h3><p>We use AI and other technologies to lower geographic, language, and cultural barriers and expand people’s experience of care.</p></article>
-          </div>
+      <h2>The same night,<br />inside and out.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">The problem we see</p>
+        <p>Two in the morning. The emergency department phone does not stop. Ambulance crews across the country are calling to ask whether the department can accept a patient.</p>
+        <p>It is not that nobody wants to take them. A single operation needs an open operating room, an anesthesiologist and a surgical team, all at the same time. Someone has to admit the patient afterward. An intensive care bed has to be free. None of that can be supplied by one doctor, however hard they try.</p>
+        <p>From outside the hospital, none of this is visible. The child is crying and in pain, no one will take them, and the fear that no one is going to treat them fills the wait. Why something that used to work no longer does, and what changed in between, there is no way to know.</p>
+        <p class="about-focus">No one did anything wrong.</p>
+        <p>The system that should connect one person to another has stopped working. That is where the gap opened.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>We are<br />on the same side.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">How we see it</p>
+        <p>Wanting to be seen quickly and wanting to treat properly are not opposing wishes. Both sides want the same thing — fewer people falling ill, and those who do treated in time.</p>
+        <p>The system simply does not guarantee it. Wherever it fails to, a gap opens, and people are hurt in it.</p>
+        <p>We stand in that gap. We stay where the tears collect, and we close the distance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <p class="section-label">Our approach</p>
+        <h2>One step,<br />from each side.</h2>
+      </div>
+      <Bridge lang="en" />
+      <div class="bridge-detail" data-reveal>
+        <div>
+          <h3>Education &mdash; toward the patient</h3>
+          <p>We train residents and medical students. Repeated simulation builds clinical judgment, and afterward we look back together at the decisions made and at how the team communicated. Capacity only grows when the number of people who can provide care grows.</p>
         </div>
+        <div>
+          <h3>Technology &mdash; toward the provider</h3>
+          <p>We help people take stock of their own condition and put it into the language of medicine. We work out with them whether this is a moment that needs a clinician, and walk through the first aid a bystander can give when minutes matter.</p>
+        </div>
+      </div>
+      <p class="bridge-close" data-reveal>We rebuild communication and relationship,<br />and build trust on top of it.</p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>What<br />we do.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">Activities</p>
+        <div class="principles">
+          <article class="principle">
+            <h3>Educating providers<span class="status">In progress</span></h3>
+            <p>There are not enough people to cover emergency and pediatric care. We run simulation-based clinical education for residents and medical students, and we build the simulated record system and the teaching materials ourselves.</p>
+          </article>
+          <article class="principle">
+            <h3>Emergency decision support<span class="status">In development</span></h3>
+            <p>Describe what is wrong in your own words. The tool asks follow-up questions the way a clinical interview does, sets out the key symptoms and how they have changed, and tells you whether this looks urgent. Where it is needed, it walks through the first aid that can be given at home and points to the nearest emergency department.</p>
+          </article>
+          <article class="principle">
+            <h3>Educating the public<span class="status">Planned</span></h3>
+            <p>We create resources so that citizens, caregivers and teachers can look after their own health and the health of the people beside them. The format and the depth change with who is reading.</p>
+          </article>
+          <article class="principle">
+            <h3>Research &mdash; AI and machine learning</h3>
+            <p>Our research centers on artificial intelligence and machine learning. This is not the first such attempt. We do it because this is the fastest way to cover the gaps where people are missing. Questions from the field become research, and what we find goes back into our teaching and our tools.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-grid">
+      <h2>Where the gap<br />is widest.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">Our priority</p>
+        <p>When no hospital can accept a patient, children and adolescents are turned away first.</p>
+        <p>They cannot explain their own symptoms, and they are harder to treat. Yet the reimbursement is lower and the legal exposure higher, so fewer clinicians are willing to take them on. This is not an individual failing. It is how the structure is built.</p>
+        <p>This is where the gap has opened widest. This is where we start.</p>
+        <div class="principles">
+          <article class="principle">
+            <h3>Children</h3>
+            <p>They are hurt most often and ill most often, and least able to say what is wrong. It is also when caregivers worry most.</p>
+            <p>For children we make what children actually watch &mdash; animation and comics &mdash; about how not to get hurt.</p>
+            <p>For caregivers we cover what to worry about, which signs to watch closely, and when a trip to the emergency department is not optional. We also cover child-rearing and developmental health more broadly.</p>
+          </article>
+          <article class="principle">
+            <h3>Adolescents</h3>
+            <p>At this age the central issue is mental health. Suicidal thoughts and intentional overdose are among the main reasons this age group reaches an emergency department.</p>
+            <p>We are working on self-assessment tools for mental health and on digital therapeutics. And for the urgent moment &mdash; when you, or a friend, have swallowed something &mdash; what to do right now.</p>
+            <p>Adolescents can read and understand this material directly. For those who want to do research with us, we study alongside them and help them take it further from where they are.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>An independent<br />nonprofit.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">Who we are</p>
+        <p>EM-I-CLEAR is an independent nonprofit association based in the Republic of Korea.</p>
+        <p>We are not owned by, and do not speak for, any hospital, company or government body. We sell nothing and we carry no advertising.</p>
+        <p>Everything we publish is free to read. Educational material is released under an open license so that it can be shared at no cost, and we publish it under the name of the organization rather than any individual.</p>
+        <p>We also say plainly what we have not done yet. On this site, work that is still at the planning stage is labeled as planned.</p>
       </div>
     </div>
   </section>

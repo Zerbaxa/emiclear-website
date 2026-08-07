@@ -7,9 +7,11 @@ interface Props {
   title: string;
   description: string;
   lang?: "ko" | "en";
+  /** 반대 언어판이 실제로 존재할 때만 true. 없는 URL을 가리키는 hreflang·언어전환 링크를 막는다. */
+  hasTranslation?: boolean;
 }
 
-const { title, description, lang = "ko" } = Astro.props;
+const { title, description, lang = "ko", hasTranslation = true } = Astro.props;
 const siteName = "EM-I-CLEAR";
 const pageTitle = title === siteName ? title : `${title} | ${siteName}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -38,17 +40,24 @@ const organization = {
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#fbfcf8" />
+    <meta name="theme-color" content="#F7F5EF" />
     <link rel="icon" type="image/svg+xml" href="/brand/emiclear-mark.svg" />
     <link rel="canonical" href={canonicalURL} />
-    <link rel="alternate" hreflang="ko" href={new URL(isEnglish ? koreanPath : Astro.url.pathname, Astro.site)} />
-    <link rel="alternate" hreflang="en" href={new URL(isEnglish ? Astro.url.pathname : englishPath, Astro.site)} />
+    {hasTranslation && (
+      <>
+        <link rel="alternate" hreflang="ko" href={new URL(isEnglish ? koreanPath : Astro.url.pathname, Astro.site)} />
+        <link rel="alternate" hreflang="en" href={new URL(isEnglish ? Astro.url.pathname : englishPath, Astro.site)} />
+        <link rel="alternate" hreflang="x-default" href={new URL(isEnglish ? koreanPath : Astro.url.pathname, Astro.site)} />
+      </>
+    )}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" rel="stylesheet" />
     <title>{pageTitle}</title>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={siteName} />
@@ -58,13 +67,13 @@ const organization = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={isEnglish ? "EM-I-CLEAR — Care should reach everyone" : "EM-I-CLEAR — 의료는 모두에게 닿아야 합니다"} />
+    <meta property="og:image:alt" content={isEnglish ? "EM-I-CLEAR — For a world where no one has to suffer" : "EM-I-CLEAR — 아무도 아프지 않은 세상을 위해"} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(organization)} />
   </head>
   <body class:list={{ "home-page": isHome }}>
-    <Header lang={lang} overlay={isHome} />
+    <Header lang={lang} overlay={isHome} hasTranslation={hasTranslation} />
     <main id="main-content" data-pagefind-body>
       <slot />
     </main>
@@ -84,7 +93,7 @@ const organization = {
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.14 });
+        }, { threshold: 0.2, rootMargin: "0px 0px -12% 0px" });
         reveals.forEach((element) => observer.observe(element));
       } else {
         reveals.forEach((element) => element.classList.add("is-visible"));

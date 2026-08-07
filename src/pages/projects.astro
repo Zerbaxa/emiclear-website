@@ -1,58 +1,143 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+// 프로젝트 인덱스. 늘어나면 여기에 행만 추가하고, 끝나면 status 만 "완료"로 바꾼다.
+const projects = [
+  { name: "시뮬레이션 교육", area: "제공자 교육", status: "진행 중", desc: "가상 전자의무기록과 시나리오, 교보재를 직접 개발해 교육에 씁니다." },
+  { name: "소아 특화 초음파 교육", area: "제공자 교육 · 연구", status: "진행 중", desc: "가르치는 방법에 따라 진단 정확도가 달라지는지 확인합니다." },
+  { name: "응급 판단 지원 도구", area: "기술", status: "개발 중", desc: "상태를 설명하면 응급도를 안내하고, 의료진이 읽을 수 있는 언어로 옮깁니다." },
+  { name: "응급실 사전 문진", area: "기술", status: "설계 중", desc: "대기 시간 동안 받은 문진을 진료 기록에 쓸 수 있게 정리합니다." },
+  { name: "응급의료기관 안내 지도", area: "기술", status: "계획", desc: "지금 내 위치에서 갈 수 있는 곳을, 소아 진료 여부와 운영시간까지 함께." },
+  { name: "어린이 손상예방 콘텐츠", area: "일반인 교육", status: "계획", desc: "다치지 않는 법을 아이들이 실제로 보는 형식으로 만듭니다." },
+  { name: "청소년 정신건강 평가 도구", area: "일반인 교육 · 기술", status: "계획", desc: "스스로 살펴볼 수 있는 평가 도구와 디지털 치료를 개발합니다." },
+];
 ---
 
-<BaseLayout title="교육·연구" description="의료 제공자와 시민·교사를 위한 교육, 현장의 질문을 잇는 연구, 의료 경험을 넓히는 기술 개발을 진행합니다.">
+<BaseLayout title="교육·연구" description="의료 제공자를 교육하고, 시민과 보호자가 스스로를 지킬 수 있게 돕고, 그 사이를 기술과 연구로 잇습니다.">
   <section class="lab-hero lab-hero--compact">
     <div class="container lab-hero__copy" data-reveal>
       <p class="section-label">Education &amp; Research</p>
-      <h1>교육하고,<br />연구하고, 기술로 잇습니다.</h1>
-      <p>의료 제공자와 시민·교사를 교육하고, 현장의 질문을 연구와 기술 개발로 이어갑니다.</p>
-    </div>
-    <div class="container activity-index" data-reveal>
-      <a href="#simulation"><span>01 · Education</span><strong>전공의 시뮬레이션 교육</strong><i>진행 중</i></a>
-      <a href="#consultation-bot"><span>02 · Research</span><strong>자연어 기반 자동 상담봇</strong><i>개발 진행 중</i></a>
+      <h1>네 방향으로<br />일합니다.</h1>
+      <p>사람을 키우고, 스스로 지킬 힘을 나누고, 그 사이를 기술로 잇고, 잇는 방법이 맞는지를 연구로 확인합니다.</p>
     </div>
   </section>
 
-  <section class="lab-projects compact-projects" aria-label="현재 진행 중인 교육과 연구">
-    <article id="simulation" class="lab-project container">
+  <section class="lab-projects compact-projects" aria-label="활동 영역">
+    <article id="education" class="lab-project container">
       <div class="project-copy" data-reveal>
-        <p class="chapter-index">01 <span>Education · In progress</span></p>
-        <h2>전공의<br />시뮬레이션 교육</h2>
-        <p>전공의가 응급상황을 반복적으로 경험하고, 팀 의사소통과 의사결정을 함께 되돌아볼 수 있도록 시뮬레이션 교육을 시행하고 있습니다.</p>
-        <a class="arrow-link" href="https://github.com/Zerbaxa/SIM_AMIS" target="_blank" rel="noreferrer">교육용 SIM_AMIS 저장소 <span aria-hidden="true">↗</span></a>
+        <p class="chapter-index">01 <span>제공자 교육</span></p>
+        <h2>진료할 사람을<br />키웁니다.</h2>
+        <p>소아청소년과와 응급의학 전공의, 의과대학생을 대상으로 시뮬레이션 교육을 시행합니다. 실제로 처방을 내고 결과를 확인하는 가상 전자의무기록을 만들고, 거기에 맞춰 시나리오와 교보재를 함께 개발합니다.</p>
+        <p>호흡곤란, 중증 외상, 경련지속상태, 패혈증처럼 판단이 갈리고 시간이 결과를 바꾸는 상황을 다룹니다. 무엇을 처방했고 무엇을 놓쳤는지는 로그로 남고, 그 기록을 함께 분석하는 것이 디브리핑입니다.</p>
       </div>
-      <div class="project-visual project-visual--simulation" data-reveal aria-label="시나리오, 시뮬레이션, 디브리핑으로 이어지는 교육 흐름">
-        <div class="simulation-board">
-          <p>Resident simulation</p>
-          <ol><li><span>01</span><strong>Scenario</strong></li><li><span>02</span><strong>Simulation</strong></li><li><span>03</span><strong>Debrief</strong></li></ol>
-          <small>경험하고 · 함께 돌아보고 · 다음 대응을 준비합니다.</small>
+      <div class="project-visual project-visual--simulation" data-reveal>
+        <div class="simulation-board" role="img" aria-label="가상 전자의무기록 기반 시뮬레이션 진행 흐름: 환자 파악, 검사 처방, 결과 대기, 판단과 재평가, 처방 로그 분석을 통한 디브리핑">
+          <p>가상 전자의무기록</p>
+          <ol>
+            <li><span>01</span><strong>환자 파악</strong><em>주소 · 과거력 · 활력징후</em></li>
+            <li><span>02</span><strong>검사 처방</strong><em>혈액검사 · 혈액가스 · 영상</em></li>
+            <li><span>03</span><strong>결과 대기</strong><em>검사마다 실제 소요시간이 흐릅니다</em></li>
+            <li><span>04</span><strong>판단·재평가</strong><em>회차를 거듭하며 상태 변화를 확인</em></li>
+            <li><span>05</span><strong>디브리핑</strong><em>남은 처방 로그를 함께 분석</em></li>
+          </ol>
+          <ul class="sim-timing" aria-label="검사별 결과 대기시간">
+            <li>혈액가스 1분</li><li>혈액검사 2분</li><li>컴퓨터 단층촬영 8분</li><li>배양검사 진행중</li>
+          </ul>
+          <small>처방하지 않은 검사는 알 수 없습니다. 기다리는 동안 무엇을 할 것인지까지가 훈련입니다.</small>
         </div>
       </div>
     </article>
 
-    <article id="consultation-bot" class="lab-project lab-project--reverse container">
+    <article id="technology" class="lab-project lab-project--reverse container">
       <div class="project-copy" data-reveal>
-        <p class="chapter-index">02 <span>Research · In development</span></p>
-        <h2>자연어 기반<br />자동 상담봇</h2>
-        <p>환자가 자신의 문제를 자연어로 설명하면 핵심 내용을 정리하고, 의료기관 방문이 필요한 상황인지 상담하는 자동 상담봇을 개발하고 있습니다.</p>
+        <p class="chapter-index">02 <span>기술</span></p>
+        <h2>환자의 말을<br />의료의 말로.</h2>
+        <p>자신의 상태를 자연어로 설명하면, 문진하듯 되물어 핵심 증상과 경과를 정리하고 지금이 급한 상황인지 안내합니다. 필요한 경우 집에서 바로 할 수 있는 응급처치와 가까운 응급의료센터를 안내합니다.</p>
+        <p>정리된 내용은 의료진이 바로 읽을 수 있는 언어로 옮겨집니다. 응급실에 도착한 뒤에도 그 기록이 이어지면, 정말 급한 사람이 같은 이야기를 처음부터 다시 하지 않아도 됩니다.</p>
+        <p><small>이 도구는 판단의 근거와 권고를 제공합니다. 최종 결정은 이용자 본인의 몫이며, 진단이나 응급 판단을 대신하지 않습니다.</small></p>
       </div>
       <div class="project-visual project-visual--chat" data-reveal>
         <div class="chat-device">
-          <div class="chat-device__head"><span class="brand-pip"></span><b>Consultation research</b><i>In development</i></div>
-          <div class="chat-bubble chat-bubble--user">지금 겪고 있는 문제를 자연어로 설명합니다.</div>
-          <div class="chat-bubble chat-bubble--assistant">핵심 증상과 시점을 정리하고, 병원 방문이 필요한 상황인지 함께 확인합니다.</div>
-          <div class="chat-device__input"><span>문제를 입력하세요</span><b>↑</b></div>
+          <div class="chat-device__head"><span class="brand-pip"></span><b>응급 판단 지원 도구</b><i>개발 중</i></div>
+          <div class="chat-bubble chat-bubble--user">어제부터 배가 아프고 열이 나요.</div>
+          <div class="chat-bubble chat-bubble--assistant">배의 어느 부분이 가장 아픈가요? 구토나 설사가 함께 있나요?</div>
+          <div class="chat-bubble chat-bubble--assistant">열은 몇 도까지 올랐고, 해열제를 먹으면 내리나요?</div>
+          <div class="chat-summary">
+            <span>의료진에게 전달되는 정리</span>
+            <p>우하복부 통증 12시간 · 발열 38.9℃ · 구토 2회 · 해열제 부분 반응</p>
+          </div>
+          <div class="chat-device__input"><span>지금 상태를 편한 말로 적어보세요</span><b>↑</b></div>
         </div>
       </div>
     </article>
+
+    <article id="public-education" class="lab-project container">
+      <div class="project-copy" data-reveal>
+        <p class="chapter-index">03 <span>일반인 교육</span></p>
+        <h2>스스로 지킬<br />힘을 나눕니다.</h2>
+        <p>시민과 보호자, 교사가 자신과 곁에 있는 사람의 건강을 스스로 지킬 수 있도록 교육 콘텐츠를 만듭니다. 읽는 사람이 누구인지에 따라 형식과 깊이를 달리합니다.</p>
+        <p>어린이에게는 다치지 않는 법을 아이들이 실제로 보는 형식으로, 보호자에게는 무엇을 걱정하고 어떤 신호를 살펴야 하는지를, 청소년에게는 자신과 친구의 위기를 알아보고 도움을 요청하는 법을 전합니다.</p>
+      </div>
+      <div class="project-visual project-visual--youth" data-reveal>
+        <div class="simulation-board" role="img" aria-label="대상별 일반인 교육 내용: 어린이, 보호자, 청소년">
+          <p>읽는 사람에 맞춰</p>
+          <ol>
+            <li><span>어린이</span><strong>다치지 않는 법</strong><em>애니메이션 · 학습만화</em></li>
+            <li><span>보호자</span><strong>무엇을 걱정할지</strong><em>살펴볼 신호 · 응급실에 갈 때</em></li>
+            <li><span>청소년</span><strong>위기를 알아보는 법</strong><em>정신건강 · 곁에서 할 수 있는 일</em></li>
+          </ol>
+          <small>육아와 발달 건강 전반도 함께 다룹니다.</small>
+        </div>
+      </div>
+    </article>
+
+    <article id="research" class="lab-project lab-project--reverse container">
+      <div class="project-copy" data-reveal>
+        <p class="chapter-index">04 <span>연구</span></p>
+        <h2>맞는 방법인지<br />확인합니다.</h2>
+        <p>가르치는 방법이 달라지면 환자의 결과도 달라지는지를 묻습니다. 아이는 자기 증상을 설명하지 못하고 검사에 협조하기 어렵고 방사선에 더 취약해서, 진료하는 그 자리에서 시행하는 초음파가 특히 쓸모 있습니다. 그것을 어떻게 가르칠 것인가가 연구 주제입니다.</p>
+        <p>다른 한 축은 인공지능과 기계학습입니다. 이런 시도가 처음은 아닙니다. 그럼에도 우리가 하는 이유는, 사람이 부족한 자리를 가장 빠르게 메울 수 있는 것이 이 기술이기 때문입니다.</p>
+        <p><small>연구는 수행 기관의 기관생명윤리위원회(IRB) 승인 아래 진행되며, 환자 자료는 익명화해 다룹니다.</small></p>
+      </div>
+      <div class="project-visual project-visual--check" data-reveal>
+        <div class="simulation-board" role="img" aria-label="소아 특화 초음파 교육 연구의 구조: 대상, 도구, 비교, 질환, 지표">
+          <p>가르치는 방법을 검증합니다</p>
+          <ol>
+            <li><span>대상</span><strong>소아를 보는 모든 사람</strong><em>전공의 · 전문의 · 일차 진료</em></li>
+            <li><span>도구</span><strong>현장 초음파</strong><em>진료하는 자리에서 즉시</em></li>
+            <li><span>비교</span><strong>교육 방법</strong><em>도제식 · 체계적 교육</em></li>
+            <li><span>질환</span><strong>장중첩증 · 고환염전</strong><em>빠른 진단이 결과를 바꾸는 병</em></li>
+            <li><span>지표</span><strong>민감도 · 특이도</strong><em>실제 진단 정확도로 확인</em></li>
+          </ol>
+          <small>가르치는 방법이 달라지면 환자의 결과도 달라지는지를 묻습니다.</small>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="project-index">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <p class="section-label">프로젝트</p>
+        <h2>지금 하고 있는 일.</h2>
+        <p>진행 중인 것과 아직 계획 단계인 것을 구분해 적습니다. 끝난 것도 이 자리에 남습니다.</p>
+      </div>
+      <div class="project-index__list" data-reveal>
+        {projects.map((p) => (
+          <div class="project-index__row">
+            <h3>{p.name}</h3>
+            <span class="status">{p.status}</span>
+            <p>{p.area} &middot; {p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 
   <section class="project-note">
     <div class="container" data-reveal>
       <span>Research note</span>
-      <p>자동 상담봇은 현재 개발 중인 연구 프로젝트이며, 의료진의 진단이나 응급의료를 대신하지 않습니다.</p>
+      <p>응급 판단 지원 도구는 현재 개발 중인 연구 프로젝트이며, 일반에 제공되지 않습니다. 의료진의 진단이나 응급의료를 대신하지 않습니다.</p>
     </div>
   </section>
 </BaseLayout>

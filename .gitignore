@@ -19,3 +19,7 @@ Thumbs.db
 tmp/
 coverage/
 *.log
+
+# 디자인 검토용 임시 목업 (배포·커밋 제외)
+public/bridge-mockup.html
+.claude/launch.json

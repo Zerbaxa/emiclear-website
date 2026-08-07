@@ -1,26 +1,122 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import Bridge from "../components/Bridge.astro";
 ---
 
-<BaseLayout title="단체소개" description="응급의학혁신교육연구회 EM-I-CLEAR를 소개합니다.">
-  <PageHero eyebrow="About Us" title="의료는 모두에게 닿아야 합니다." description="응급의학혁신교육연구회는 교육, 연구와 책임 있는 기술로 필요한 도움과 대응을 연결하는 독립적 비영리단체입니다." />
+<BaseLayout title="단체소개" description="갑자기 아픈 사람과 그를 도울 수 있는 사람 사이에는, 시스템이 채우지 못한 틈이 있습니다. EM-I-CLEAR는 그 틈을 양쪽에서 메우는 독립적 비영리단체입니다.">
+  <PageHero eyebrow="About Us" title="틈을 메웁니다." description="갑자기 아픈 사람과 그를 도울 수 있는 사람 사이에는, 시스템이 채우지 못한 틈이 있습니다. EM-I-CLEAR는 그 틈을 양쪽에서 메우는 독립적 비영리단체입니다." />
+
   <section class="section">
     <div class="container content-grid">
-      <h2>응급의학<br />혁신교육연구회</h2>
-      <div class="prose">
-        <p><strong>EM-I-CLEAR</strong>는 <span lang="en">Emergency Medicine Initiative for Clinical Learning, Education, Artificial Intelligence, and Research</span>의 약자입니다.</p>
-        <p class="section-label about-focus-label">우리의 초점</p>
-        <p class="about-focus">의료의 간극을 좁힙니다.</p>
-        <p>필요한 사람이 필요한 순간에 지식과 적절한 도움으로 이어지도록 합니다.</p>
-        <div class="about-activities">
-          <p class="section-label">우리가 하는 일</p>
-          <div class="principles">
-            <article class="principle"><h3>교육</h3><p>의료 제공자와 시민·교사를 교육해 더 나은 의료 제공과 적절한 의료 이용을 돕습니다.</p></article>
-            <article class="principle"><h3>연구</h3><p>교육 교보재를 개발하고, 더 나은 의료를 위한 학술 연구와 컨퍼런스·워크숍을 진행합니다.</p></article>
-            <article class="principle"><h3>기술</h3><p>인공지능 등 기술로 지역·언어·문화의 장벽을 낮추고 의료 경험을 넓힙니다.</p></article>
-          </div>
+      <h2>안과 밖,<br />같은 밤.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">우리가 보는 문제</p>
+        <p>새벽 두 시. 응급실 전화가 쉬지 않고 울립니다. 전국의 구급대에서 걸려오는 수용 문의입니다.</p>
+        <p>수용하고 싶지 않아서 수용하지 못하는 것이 아닙니다. 수술 하나를 하려면 수술실에 여석이 있어야 하고, 마취통증의학과 인력과 집도할 과의 인력이 함께 있어야 합니다. 입원한 뒤를 맡을 병동 주치의가 있어야 하고, 중환자실에 자리가 남아 있어야 합니다. 의사 한 사람이 아무리 최선을 다해도 혼자서는 채울 수 없는 자리들입니다.</p>
+        <p>병원 밖에서는 그 안이 보이지 않습니다. 아이는 울고 힘들어하는데 받아주는 곳은 없고, 치료받지 못한다는 불안이 그 시간을 잠식합니다. 예전에는 되던 일이 왜 지금은 안 되는지, 그동안 무엇이 달라졌는지 알 길이 없습니다.</p>
+        <p class="about-focus">누가 잘못해서 벌어지는 일이 아닙니다.</p>
+        <p>사람과 사람을 이어주어야 할 시스템이 작동하지 않기 때문입니다. 그 자리에 틈이 생겼습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>우리는<br />같은 편입니다.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">우리의 관점</p>
+        <p>빨리 진료받고 싶은 마음과 제대로 진료하고 싶은 마음은 다르지 않습니다. 덜 아픈 사회, 제때 치료받는 사회를 바란다는 점에서 양쪽은 같은 길 위에 있습니다.</p>
+        <p>다만 그 길을 시스템이 보장해주지 않습니다. 보장되지 않은 자리마다 틈이 생기고, 그 틈에서 사람이 다칩니다.</p>
+        <p class="about-focus">우리는 그 틈에 섭니다.</p>
+        <p>눈물이 고이는 자리에 머물면서, 벌어진 간격을 좁힙니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <p class="section-label">우리의 방식</p>
+        <h2>양쪽에서<br />한 발짝씩.</h2>
+      </div>
+      <Bridge />
+      <div class="bridge-detail" data-reveal>
+        <div>
+          <h3>교육 &mdash; 제공자가 수요자에게</h3>
+          <p>젊은 의사와 의과대학생을 키웁니다. 반복된 시뮬레이션으로 진료 역량을 기르고, 팀 안에서의 판단과 소통을 함께 되돌아봅니다. 감당할 수 있는 사람이 늘어야 감당할 수 있는 수요도 늘어납니다.</p>
         </div>
+        <div>
+          <h3>기술 &mdash; 수요자가 제공자에게</h3>
+          <p>자신의 상태를 스스로 살피고, 그것을 의학의 언어로 옮겨 전할 수 있게 돕습니다. 지금이 의료진의 손이 필요한 상황인지 함께 확인하고, 당장 급한 순간에 곁에 있는 사람이 할 수 있는 응급처치를 안내합니다.</p>
+        </div>
+      </div>
+      <p class="bridge-close" data-reveal>소통과 관계를 다시 세우고,<br />그 위에 신뢰를 쌓습니다.</p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>우리가<br />하는 일.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">활동</p>
+        <div class="principles">
+          <article class="principle">
+            <h3>의료 제공자 교육<span class="status">진행 중</span></h3>
+            <p>응급 상황과 소아청소년 진료를 감당할 인력이 부족합니다. 전공의와 의과대학생을 대상으로 시뮬레이션 기반 진료 교육을 시행하고 있으며, 교육에 쓰이는 교보재와 자료를 직접 개발해 제공하고 있습니다.</p>
+          </article>
+          <article class="principle">
+            <h3>응급 판단 지원 도구<span class="status">개발 중</span></h3>
+            <p>자신의 상태를 자연어로 설명하면 지금이 급한 상황인지 안내하고, 필요한 경우 집에서 바로 할 수 있는 응급처치와 가까운 응급의료센터를 안내합니다. 정리된 문진은 응급실에 전달되어, 정말 급한 사람이 시간을 지체하지 않도록 돕습니다.</p>
+          </article>
+          <article class="principle">
+            <h3>일반인 교육<span class="status">계획</span></h3>
+            <p>시민과 보호자, 교사가 자신과 곁에 있는 사람의 건강을 스스로 지킬 수 있도록 교육 콘텐츠를 만듭니다. 읽는 사람이 누구인지에 따라 형식과 깊이를 달리합니다.</p>
+          </article>
+          <article class="principle">
+            <h3>연구 &mdash; 인공지능과 기계학습</h3>
+            <p>우리 연구의 축은 인공지능과 기계학습입니다. 이런 시도가 처음은 아닙니다. 그럼에도 우리가 하는 이유는, 사람이 부족한 자리를 가장 빠르게 메울 수 있는 것이 이 기술이기 때문입니다. 현장의 질문을 연구로 확인하고, 그 결과를 교육과 도구에 되돌립니다.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-grid">
+      <h2>가장 크게 벌어진<br />곳부터.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">우선 대상</p>
+        <p>받아줄 곳을 찾기 어려운 상황에서 가장 먼저 밀려나는 것은 소아와 청소년입니다.</p>
+        <p>이 나이대는 스스로 증상을 설명하기 어렵고 진료 난도는 높습니다. 그런데 보상은 적고 법적 위험은 큽니다. 그래서 맡으려는 사람이 줄어듭니다. 개인의 문제가 아니라 구조가 그렇게 되어 있습니다.</p>
+        <p>틈이 가장 크게 벌어진 곳이 여기입니다. 우리는 여기부터 메웁니다.</p>
+        <div class="principles">
+          <article class="principle">
+            <h3>어린이</h3>
+            <p>가장 자주 다치고 가장 자주 아픈 나이입니다. 그런데 아플 때 자기 상태를 설명하지 못합니다. 그래서 보호자의 걱정이 가장 큰 시기이기도 합니다.</p>
+            <p>아이에게는 다치지 않는 법과 조심해야 할 것들을, 아이들이 실제로 보는 형식 &mdash; 애니메이션과 학습만화로 전합니다.</p>
+            <p>보호자에게는 무엇을 걱정해야 하는지, 어떤 신호를 자세히 살펴야 하는지, 어떤 때에는 반드시 응급실로 가야 하는지를 전합니다. 육아와 발달 건강 전반도 함께 다룹니다.</p>
+          </article>
+          <article class="principle">
+            <h3>청소년</h3>
+            <p>이 나이의 가장 큰 화두는 정신건강입니다. 자살사고와 음독은 실제로 이 연령대가 응급실을 찾는 주된 이유입니다.</p>
+            <p>정신건강을 스스로 살펴볼 수 있는 도구와 디지털 치료를 개발하려 합니다. 그리고 급한 순간 &mdash; 내가, 혹은 친구가 무언가를 삼켰을 때 당장 무엇을 해야 하는지를 안내합니다.</p>
+            <p>청소년은 자료를 직접 읽고 이해할 수 있는 나이입니다. 함께 연구하고 싶은 청소년에게는 같이 공부하고, 자신이 선 자리에서 그것을 넓혀볼 기회를 제공합니다.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>독립적<br />비영리단체입니다.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">우리는 어떤 단체인가</p>
+        <p>EM-I-CLEAR는 대한민국의 독립적 비영리단체입니다.</p>
+        <p>어느 병원이나 기업, 정부기관에 속해 있지 않으며 그들을 대변하지 않습니다. 무엇도 판매하지 않고 광고를 싣지 않습니다.</p>
+        <p>우리가 내놓는 것은 모두 무료로 읽을 수 있습니다. 교육자료는 비용 없이 공유할 수 있는 라이선스로 제공하며, 개인이 아니라 단체의 이름으로 발행합니다.</p>
+        <p>아직 하지 못한 일도 그대로 적습니다. 이 사이트에서 계획 단계인 것은 계획이라고 적혀 있습니다.</p>
       </div>
     </div>
   </section>
