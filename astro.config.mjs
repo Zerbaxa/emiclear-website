@@ -3,7 +3,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://excist.dothome.co.kr",
+  site: "https://emiclear.org",
   integrations: [mdx(), sitemap()],
   output: "static",
   trailingSlash: "always",
