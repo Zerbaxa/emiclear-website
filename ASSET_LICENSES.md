@@ -8,14 +8,6 @@ The following photographs are used under the [Pexels License](https://www.pexels
 - Photographer: Tima Miroshnichenko
 - Source: https://www.pexels.com/photo/stethoscope-and-notebook-on-desk-5407238/
 
-## Medical desk with stethoscope and notebook
-
-Background of the Open Graph share images (`public/og.png`, `public/og-en.png`).
-
-- File: `public/images/medical-desk-pexels-5407251.jpg`
-- Photographer: Tima Miroshnichenko
-- Source: https://www.pexels.com/photo/5407251/
-
 ## Empty classroom
 
 - File: `public/images/empty-classroom-pexels-30105084.jpg`
