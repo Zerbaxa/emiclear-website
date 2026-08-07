@@ -1,6 +1,0 @@
-# 닷홈(Apache) 배포용. dist/ 로 복사되어 /html/.htaccess 로 올라간다.
-# 이게 없으면 없는 주소에서 사이트 자체 404 페이지가 아니라 호스팅 기본 에러 페이지가 뜬다.
-ErrorDocument 404 /404.html
-
-# 정적 사이트라 문자셋만 명시해 두면 충분하다.
-AddDefaultCharset UTF-8
