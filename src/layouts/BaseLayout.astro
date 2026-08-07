@@ -53,6 +53,12 @@ const organization = {
         <link rel="alternate" hreflang="x-default" href={new URL(isEnglish ? koreanPath : Astro.url.pathname, Astro.site)} />
       </>
     )}
+    {isHome && (
+      <>
+        <link rel="preload" as="image" href="/images/hero-desktop.webp" media="(min-width: 701px)" />
+        <link rel="preload" as="image" href="/images/hero-mobile.webp" media="(max-width: 700px)" />
+      </>
+    )}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
