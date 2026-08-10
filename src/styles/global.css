@@ -302,6 +302,15 @@ p { margin-bottom: 1.2rem; }
 .topic-card h3 { margin: 0; font-family: var(--serif); font-size: 1.42rem; line-height: 1.32; }
 .topic-card__summary { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.6; }
 .topic-card__meta { margin: auto 0 0; color: var(--muted); font-size: .78rem; }
+/* 두 판(보호자용·의료인용)이 있는 주제는 카드 하나에 링크 둘을 둔다.
+   카드 전체를 링크로 감쌀 수 없으므로 본문 래퍼를 따로 쓴다. */
+.topic-card__body { display: flex; flex-direction: column; flex: 1; gap: .55rem; padding: 1.65rem 1.5rem; }
+.topic-card__editions { display: flex; flex-wrap: wrap; gap: .4rem; margin: .35rem 0 0; }
+.topic-card__editions a { display: inline-flex; align-items: center; gap: .35rem; padding: .38rem .7rem; border: 1px solid var(--line); border-radius: 999px; color: var(--teal-700); font-size: .78rem; font-weight: 800; text-decoration: none; transition: background .16s ease, border-color .16s ease; }
+.topic-card__editions a:hover { border-color: var(--teal-700); background: var(--white); }
+.topic-card__editions span { transition: transform .18s ease; }
+.topic-card__editions a:hover span { transform: translateX(.15rem); }
+.topic-card__body .topic-card__meta { margin-top: .9rem; }
 .topic-card--planned { gap: .55rem; padding: 1.65rem 1.5rem; min-height: 8rem; }
 .topic-card--planned .topic-card__eyebrow { color: var(--muted); }
 .topic-card--planned .topic-card__summary { margin-top: .1rem; }

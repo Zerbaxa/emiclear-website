@@ -4,7 +4,7 @@ import { categories, audienceLabel, audienceLabelEn, stripEn } from "../data/edu
 
 interface Props {
   lang?: "ko" | "en";
-  /** 지정하면 그 대상의 자료만 보여 준다. 없으면 전체. */
+  /** 지정하면 그 대상의 자료만 개별 카드로 보여 준다. 없으면 주제 단위로 묶는다. */
   audience?: "public" | "clinicians";
 }
 const { lang = "ko", audience } = Astro.props;
@@ -24,18 +24,28 @@ const formatDate = (d: Date) =>
 const href = (id: string) =>
   isEnglish ? `/en/education/${stripEn(id)}/` : `/education/${id}/`;
 
-const sections = categories.map((category) => ({
-  category,
-  entries: category.topics.flatMap((topic) =>
-    published.filter((e) => e.data.topic === topic.slug).map((entry) => ({ entry, topic }))
-  ),
-  planned: category.topics.filter(
-    (topic) => !published.some((e) => e.data.topic === topic.slug)
-  ),
-}));
+/** 한 주제의 여러 판. 대표 카드는 보호자용을 앞에 세운다. */
+const AUDIENCE_ORDER = ["public", "clinicians"] as const;
+
+const sections = categories.map((category) => {
+  const topics = category.topics.map((topic) => {
+    const editions = published
+      .filter((e) => e.data.topic === topic.slug)
+      .sort(
+        (a, b) =>
+          AUDIENCE_ORDER.indexOf(a.data.audience) - AUDIENCE_ORDER.indexOf(b.data.audience)
+      );
+    return { topic, editions };
+  });
+  return {
+    category,
+    live: topics.filter((t) => t.editions.length > 0),
+    planned: topics.filter((t) => t.editions.length === 0).map((t) => t.topic),
+  };
+});
 ---
 
-{sections.map(({ category, entries, planned }) => (
+{sections.map(({ category, live, planned }) => (
   <section class="section" id={category.id}>
     <div class="container">
       <div class="section-heading" data-reveal>
@@ -44,21 +54,47 @@ const sections = categories.map((category) => ({
       </div>
 
       <ul class="topic-grid" data-reveal>
-        {entries.map(({ entry, topic }) => (
-          <li class="topic-card">
-            <a href={href(entry.id)}>
-              <p class="topic-card__eyebrow">
-                <span>{isEnglish ? topic.labelEn : topic.label}</span>
-                <span class="topic-card__badge">{label[entry.data.audience]}</span>
-              </p>
-              <h3>{entry.data.title}</h3>
-              <p class="topic-card__summary">{entry.data.summary}</p>
-              <p class="topic-card__meta">
-                {isEnglish ? "Reviewed " : "최종 검토 "}{formatDate(entry.data.reviewedAt)}
-              </p>
-            </a>
-          </li>
-        ))}
+        {live.map(({ topic, editions }) => {
+          // 대표로 내세울 판. 목록이 대상별로 걸러진 경우엔 그 하나뿐이다.
+          const lead = editions[0];
+          const single = editions.length === 1;
+          return (
+            <li class="topic-card">
+              {single ? (
+                <a href={href(lead.id)}>
+                  <p class="topic-card__eyebrow">
+                    <span>{isEnglish ? topic.labelEn : topic.label}</span>
+                    <span class="topic-card__badge">{label[lead.data.audience]}</span>
+                  </p>
+                  <h3>{lead.data.title}</h3>
+                  <p class="topic-card__summary">{lead.data.summary}</p>
+                  <p class="topic-card__meta">
+                    {isEnglish ? "Reviewed " : "최종 검토 "}{formatDate(lead.data.reviewedAt)}
+                  </p>
+                </a>
+              ) : (
+                <div class="topic-card__body">
+                  <p class="topic-card__eyebrow">
+                    <span>{isEnglish ? topic.labelEn : topic.label}</span>
+                  </p>
+                  <h3>{lead.data.title}</h3>
+                  <p class="topic-card__summary">{lead.data.summary}</p>
+                  <p class="topic-card__editions">
+                    {editions.map((e) => (
+                      <a href={href(e.id)}>
+                        {label[e.data.audience]}
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    ))}
+                  </p>
+                  <p class="topic-card__meta">
+                    {isEnglish ? "Reviewed " : "최종 검토 "}{formatDate(lead.data.reviewedAt)}
+                  </p>
+                </div>
+              )}
+            </li>
+          );
+        })}
 
         {planned.map((topic) => (
           <li class="topic-card topic-card--planned">
