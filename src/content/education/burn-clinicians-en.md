@@ -1,5 +1,5 @@
 ---
-title: "Initial Assessment and Emergency Department Management of Burns in Children and Adolescents — EM-I-CLEAR Clinical Education Resource"
+title: "Initial Assessment and Emergency Department Management of Burns in Children and Adolescents"
 summary: "For pediatric and adolescent burns, this resource presents 18 recommendations and their evidence, covering everything from prehospital and home first aid through emergency department evaluation, treatment, and referral decisions. At the scene, cool with running tap water for 20 minutes starting immediately after injury; in the emergency department, assess airway and shock first, determine depth and total body surface area (TBSA), and use these to guide fluid resuscitation, analgesia, and wound care; patients who are discharged should be re-assessed within 24 hours. A time-ordered flow of care is placed at the front of the document."
 audience: "clinicians"
 topic: "burn"
@@ -21,8 +21,8 @@ references:
   - "Norman G, et al. Antiseptics for burns. Cochrane Database Syst Rev. 2017. PMID 28700086"
   - "Church D, et al. Burn wound infections. Clin Microbiol Rev. 2006. PMID 16614255"
   - "Pisano C, et al. Variation in acute fluid resuscitation among pediatric burn centers. Burns. 2021. PMID 33707085"
-pdf: "/education/burn-clinicians.pdf"
-pdfEdition: "2026년 8월판"
+pdf: "/education/burn-clinicians-en.pdf"
+pdfEdition: "August 2026 edition"
 draft: false
 ---
 
