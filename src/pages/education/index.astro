@@ -1,43 +1,90 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import { categories, audienceLabel } from "../../data/education-topics";
+
+const published = await getCollection(
+  "education",
+  ({ data }) => !data.draft && data.lang === "ko"
+);
+
+const formatDate = (d: Date) =>
+  new Intl.DateTimeFormat("ko-KR", { dateStyle: "long" }).format(d);
+
+/** 카테고리별로 발간본과 준비 중 주제를 갈라 둔다. */
+const sections = categories.map((category) => {
+  const entries = category.topics.flatMap((topic) =>
+    published
+      .filter((e) => e.data.topic === topic.slug)
+      .map((entry) => ({ entry, topic }))
+  );
+  const planned = category.topics.filter(
+    (topic) => !published.some((e) => e.data.topic === topic.slug)
+  );
+  return { category, entries, planned };
+});
+
+const total = published.length;
 ---
 
-<BaseLayout title="교육자료" description="보건의료인과 일반인·보호자를 위한 검토된 교육자료. 근거와 검토 날짜를 함께 제공합니다.">
-  <PageHero eyebrow="Education" title="검토를 마친 것만 내놓습니다." description="보건의료인과 일반인·보호자를 위한 교육자료를 만듭니다. 자료마다 근거와 검토 날짜를 함께 제공합니다." />
+<BaseLayout title="자료" description="보건의료인과 일반인·보호자를 위한 검토된 교육자료. 근거와 검토 날짜를 함께 제공합니다.">
+  <PageHero eyebrow="Resources" title="검토를 마친 것만 내놓습니다." description="다쳤을 때 무엇을 해야 하는지, 언제 병원에 가야 하는지를 근거와 함께 정리합니다. 자료마다 참고문헌과 검토 날짜를 표시합니다." />
 
-  <section class="section">
-    <div class="container content-grid">
-      <h2>누구를 위한<br />자료인가.</h2>
-      <div class="prose" data-reveal>
-        <p class="section-label">대상</p>
-        <div class="principles">
-          <article class="principle">
-            <h3>보건의료인</h3>
-            <p>임상에서 적용할 수 있는 범위와 그 한계를 분명히 하고, 참고문헌과 검토 정보를 함께 제공합니다.</p>
-          </article>
-          <article class="principle">
-            <h3>일반인·보호자</h3>
-            <p>쉬운 말과 분명한 행동 안내로, 무엇을 걱정해야 하고 언제 도움을 요청해야 하는지를 전합니다.</p>
-          </article>
+  {sections.map(({ category, entries, planned }) => (
+    <section class="section" id={category.id}>
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <p class="section-label">{category.label}</p>
+          <h2>{category.description}</h2>
         </div>
-        <div class="notice">
-          <strong>의료정보 안내</strong>
-          <p>이 사이트의 교육자료는 일반적인 정보 제공을 목적으로 하며, 개인의 진단이나 치료를 대신하지 않습니다. 응급상황에서는 119 또는 가까운 응급의료기관의 도움을 받으세요.</p>
-        </div>
+
+        <ul class="topic-grid" data-reveal>
+          {entries.map(({ entry, topic }) => (
+            <li class="topic-card">
+              <a href={`/education/${entry.id}/`}>
+                <p class="topic-card__eyebrow">
+                  <span>{topic.label}</span>
+                  <span class="topic-card__badge">{audienceLabel[entry.data.audience]}</span>
+                </p>
+                <h3>{entry.data.title}</h3>
+                <p class="topic-card__summary">{entry.data.summary}</p>
+                <p class="topic-card__meta">최종 검토 {formatDate(entry.data.reviewedAt)}</p>
+              </a>
+            </li>
+          ))}
+
+          {planned.map((topic) => (
+            <li class="topic-card topic-card--planned">
+              <p class="topic-card__eyebrow">
+                <span>{topic.label}</span>
+                <span class="topic-card__badge">준비 중</span>
+              </p>
+              <p class="topic-card__summary">검토를 마치는 대로 공개합니다.</p>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
-  </section>
+    </section>
+  ))}
 
   <section class="section section--alt">
     <div class="container content-grid">
       <h2>우리가 자료를<br />다루는 방식.</h2>
       <div class="prose" data-reveal>
         <p class="section-label">원칙</p>
+        <div class="notice">
+          <strong>의료정보 안내</strong>
+          <p>이 사이트의 교육자료는 일반적인 정보 제공을 목적으로 하며, 개인의 진단이나 치료를 대신하지 않습니다. 응급상황에서는 119 또는 가까운 응급의료기관의 도움을 받으세요.</p>
+        </div>
         <div class="principles">
           <article class="principle">
             <h3>근거와 검토 날짜를 함께 냅니다</h3>
             <p>모든 교육자료에 근거와 참고문헌을 붙이고, 게시일과 최종 검토일, 다음 검토예정일을 표시합니다. 의학 정보는 시간이 지나면 달라지기 때문입니다. 검토를 마치지 않은 초안은 사이트에 올라오지 않습니다.</p>
+          </article>
+          <article class="principle">
+            <h3>같은 주제를 두 갈래로 씁니다</h3>
+            <p>보호자용은 쉬운 말과 분명한 행동 안내로, 의료인용은 적용 범위와 한계를 밝혀 씁니다. 하나의 문헌 검토에서 두 판을 함께 만들기 때문에 서로 어긋나지 않습니다.</p>
           </article>
           <article class="principle">
             <h3>단체의 이름으로 제공합니다</h3>
@@ -45,9 +92,12 @@ import PageHero from "../../components/PageHero.astro";
           </article>
           <article class="principle">
             <h3>개작을 허용하지 않습니다</h3>
-            <p>교육 콘텐츠는 CC BY-NC-ND 4.0으로 제공합니다. 검토를 거친 자료가 임의로 편집되어 다른 맥락에서 유통되는 것을 막기 위해 개작을 허용하지 않습니다. 번역이 필요한 경우 EM-I-CLEAR가 검토한 번역본을 직접 제공합니다.</p>
+            <p>교육 콘텐츠는 CC BY-NC-ND 4.0으로 제공합니다. 검토를 거친 자료가 임의로 편집되어 다른 맥락에서 유통되는 것을 막기 위해서입니다. 번역이 필요한 경우 EM-I-CLEAR가 검토한 번역본을 직접 제공합니다.</p>
           </article>
         </div>
+        {total === 0 && (
+          <p>아직 공개된 자료가 없습니다. 검토를 마치는 대로 이곳에 올립니다.</p>
+        )}
       </div>
     </div>
   </section>

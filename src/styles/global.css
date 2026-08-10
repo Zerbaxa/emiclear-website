@@ -272,6 +272,48 @@ p { margin-bottom: 1.2rem; }
 .empty-state h1 { font-size: clamp(2rem, 6vw, 4rem); }
 .entry-meta-title { font-size: 1.4rem; }
 
+/* 자료 목록 — 카테고리별 카드.
+   발간본은 링크 카드, 아직 없는 주제는 「준비 중」으로 자리만 보여 준다.
+   앞으로 무엇이 나올지 보이는 편이 지금 비어 있다는 사실보다 낫다. */
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1px; margin-top: 2.5rem; padding: 0; list-style: none; background: var(--line); border: 1px solid var(--line); }
+.topic-card { display: flex; flex-direction: column; min-height: 12.5rem; background: var(--bg); }
+.topic-card > a { display: flex; flex-direction: column; flex: 1; gap: .55rem; padding: 1.65rem 1.5rem; color: inherit; text-decoration: none; transition: background .18s ease; }
+.topic-card > a:hover { background: var(--white); }
+.topic-card__eyebrow { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin: 0; font-size: .8rem; font-weight: 800; letter-spacing: .04em; color: var(--teal-700); }
+.topic-card__badge { padding: .18rem .5rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-weight: 700; letter-spacing: 0; white-space: nowrap; }
+.topic-card h3 { margin: 0; font-family: var(--serif); font-size: 1.42rem; line-height: 1.32; }
+.topic-card__summary { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.6; }
+.topic-card__meta { margin: auto 0 0; color: var(--muted); font-size: .78rem; }
+.topic-card--planned { gap: .55rem; padding: 1.65rem 1.5rem; min-height: 8rem; }
+.topic-card--planned .topic-card__eyebrow { color: var(--muted); }
+.topic-card--planned .topic-card__summary { margin-top: .1rem; }
+
+/* 자료 본문 */
+.entry-side { position: sticky; top: 7rem; align-self: start; }
+.entry-toc { margin-bottom: 2.5rem; }
+.entry-toc ol { margin: .9rem 0 0; padding: 0; list-style: none; counter-reset: toc; }
+.entry-toc li { counter-increment: toc; margin-bottom: .55rem; font-size: .9rem; line-height: 1.45; }
+.entry-toc li::before { content: counter(toc) ". "; color: var(--teal-700); font-weight: 700; }
+.entry-toc a { color: var(--muted); text-decoration: none; }
+.entry-toc a:hover { color: var(--navy-950); text-decoration: underline; text-underline-offset: .2em; }
+.entry-pdf { margin-top: 2rem; gap: .6rem; }
+.entry-pdf small { opacity: .72; font-weight: 600; }
+.entry-reviewed { color: var(--teal-700) !important; }
+.entry-body h2 { margin: 3.2rem 0 1rem; font-size: clamp(1.75rem, 3.4vw, 2.35rem); scroll-margin-top: 6rem; }
+.entry-body h3 { margin: 2.2rem 0 .8rem; font-size: 1.35rem; }
+.entry-body p { margin-bottom: 1.15rem; line-height: 1.82; }
+.entry-body ul, .entry-body ol { margin: 0 0 1.3rem 1.15rem; }
+.entry-body li { margin-bottom: .5rem; line-height: 1.75; }
+.entry-body blockquote { margin: 1.8rem 0; padding: 1.3rem 1.5rem; border-left: 3px solid var(--teal-600); background: var(--white); }
+.entry-body blockquote ul { margin: 0 0 0 1rem; }
+.entry-body blockquote li:last-child { margin-bottom: 0; }
+.entry-refs { margin-top: 3.5rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
+.entry-refs h2 { margin: 0 0 1rem; font-size: 1.4rem; }
+.entry-refs ol { margin-left: 1.1rem; }
+.entry-refs li { margin-bottom: .35rem; font-size: .9rem; }
+.entry-refs a { color: var(--teal-700); }
+.entry-back { margin-top: 2.5rem; }
+
 /* 양방향 도해 — 의료 제공자 ↔ 의료수요자.
    두 주체는 양 끝에 대등하게 두고, 교육·기술은 그 사이(간극)에서 작용한다.
    수단을 한쪽에 붙이면 "제공자의 교육 / 수요자의 기술"로 읽히므로 가운데에 둔다.
@@ -375,6 +417,9 @@ p { margin-bottom: 1.2rem; }
   .lab-console__main { grid-template-columns: 4rem 1fr; }
   .lab-console__note { display: none; }
   .content-grid { grid-template-columns: 1fr; }
+  /* 좁은 화면에서는 목차·자료정보가 본문 위로 온다. 붙어 있으면 본문을 가린다. */
+  .entry-side { position: static; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+  .entry-toc { margin-bottom: 2rem; }
   .bridge-detail { grid-template-columns: 1fr; gap: 2.2rem; }
   .activity-index { grid-template-columns: 1fr; }
   .activity-index a:not(:last-child) { border-right: 0; border-bottom: 1px solid rgb(6 26 43 / .16); }
@@ -396,6 +441,11 @@ p { margin-bottom: 1.2rem; }
   .story-hero { background-image: linear-gradient(90deg, rgb(4 19 32 / .83) 0%, rgb(4 19 32 / .63) 46%, rgb(4 19 32 / .23) 78%), url("/images/hero-mobile.webp"); background-position: 51% 50%; }
   .story-hero__content { padding-bottom: 6.8rem; }
   .story-hero__lead { max-width: 32rem; font-size: .95rem; }
+  /* 긴 자료를 손에 들고 읽는 화면. 글자를 키우고 줄간격을 넉넉히 둔다. */
+  .entry-body p, .entry-body li { font-size: 1.04rem; line-height: 1.85; }
+  .entry-body h2 { margin-top: 2.6rem; scroll-margin-top: 4.5rem; }
+  .entry-body blockquote { padding: 1.1rem 1.15rem; }
+  .topic-grid { grid-template-columns: 1fr; }
   .hero-actions .button { flex: 1 1 10rem; }
   .scroll-cue { right: 1rem; bottom: 2rem; }
   .opening-statement { min-height: 64vh; padding: 6rem 0; }

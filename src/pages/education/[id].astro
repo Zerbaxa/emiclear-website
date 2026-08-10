@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import { categories, audienceLabel } from "../../data/education-topics";
 
 export async function getStaticPaths() {
   const entries = await getCollection("education", ({ data }) => !data.draft);
@@ -10,31 +11,81 @@ export async function getStaticPaths() {
 
 interface Props { entry: CollectionEntry<"education"> }
 const { entry } = Astro.props;
-const { Content } = await render(entry);
-const formatDate = (date: Date) => new Intl.DateTimeFormat("ko-KR", { dateStyle: "long" }).format(date);
+const { Content, headings } = await render(entry);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("ko-KR", { dateStyle: "long" }).format(date);
+
+/** 본문 절 목차. 긴 자료에서 원하는 대목으로 바로 가게 한다. */
+const toc = headings.filter((h) => h.depth === 2);
+
+const category = categories.find((c) =>
+  c.topics.some((t) => t.slug === entry.data.topic)
+);
+const topic = category?.topics.find((t) => t.slug === entry.data.topic);
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.summary} hasTranslation={false}>
-  <PageHero eyebrow={entry.data.audience === "clinicians" ? "For Clinicians" : "For Public"} title={entry.data.title} description={entry.data.summary} />
-  <article class="section">
+  <PageHero eyebrow={`${topic?.label ?? entry.data.topic} · ${audienceLabel[entry.data.audience]}`} title={entry.data.title} description={entry.data.summary} />
+
+  <article class="section entry">
     <div class="container content-grid">
-      <aside>
+      <aside class="entry-side">
+        {toc.length > 1 && (
+          <nav class="entry-toc" aria-label="이 자료의 목차">
+            <h2 class="entry-meta-title">목차</h2>
+            <ol>
+              {toc.map((h) => (
+                <li><a href={`#${h.slug}`}>{h.text}</a></li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
         <h2 class="entry-meta-title">자료 정보</h2>
         <dl>
-          <dt>주제</dt><dd>{entry.data.topic}</dd>
+          {category && <><dt>분류</dt><dd>{category.label}</dd></>}
+          <dt>대상</dt><dd>{audienceLabel[entry.data.audience]}</dd>
           <dt>자료 유형</dt><dd>{entry.data.materialType}</dd>
           <dt>게시일</dt><dd>{formatDate(entry.data.publishedAt)}</dd>
           <dt>최종 검토일</dt><dd>{formatDate(entry.data.reviewedAt)}</dd>
           <dt>다음 검토예정일</dt><dd>{formatDate(entry.data.nextReviewAt)}</dd>
         </dl>
+
+        {entry.data.pdf && (
+          <a class="button button-solid entry-pdf" href={entry.data.pdf} download>
+            PDF 내려받기
+            {entry.data.pdfEdition && <small>{entry.data.pdfEdition}</small>}
+          </a>
+        )}
       </aside>
-      <div class="prose">
-        <p><strong>EM-I-CLEAR 내부 검토 완료</strong></p>
+
+      <div class="prose entry-body">
+        <p class="entry-reviewed"><strong>EM-I-CLEAR 내부 검토 완료</strong></p>
         <Content />
-        <div class="notice"><strong>의료정보 면책</strong><p>이 자료는 일반적인 교육 목적으로 제공되며 개인의 진단이나 치료를 대신하지 않습니다.</p></div>
+
+        {entry.data.references.length > 0 && (
+          <section class="entry-refs">
+            <h2>참고문헌</h2>
+            <ol>
+              {entry.data.references.map((pmid) => (
+                <li>
+                  <a href={`https://pubmed.ncbi.nlm.nih.gov/${pmid}/`} rel="noopener" target="_blank">
+                    PubMed {pmid}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        <div class="notice">
+          <strong>의료정보 면책</strong>
+          <p>이 자료는 일반적인 교육 목적으로 제공되며 개인의 진단이나 치료를 대신하지 않습니다.</p>
+        </div>
         <p><small>이 교육 콘텐츠는 CC BY-NC-ND 4.0 조건으로 제공됩니다.</small></p>
+        <p class="entry-back"><a class="arrow-link" href="/education/">다른 자료 보기 <span aria-hidden="true">↗</span></a></p>
       </div>
     </div>
   </article>
 </BaseLayout>
-
