@@ -68,13 +68,7 @@ const topic = category?.topics.find((t) => t.slug === entry.data.topic);
           <section class="entry-refs">
             <h2>참고문헌</h2>
             <ol>
-              {entry.data.references.map((pmid) => (
-                <li>
-                  <a href={`https://pubmed.ncbi.nlm.nih.gov/${pmid}/`} rel="noopener" target="_blank">
-                    PubMed {pmid}
-                  </a>
-                </li>
-              ))}
+              {entry.data.references.map((ref) => <li>{ref}</li>)}
             </ol>
           </section>
         )}
