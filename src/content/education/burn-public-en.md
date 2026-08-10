@@ -10,7 +10,7 @@ publishedAt: "2026-08-10"
 reviewedAt: "2026-08-10"
 nextReviewAt: "2027-08-10"
 references:
-  - "Griffin BR, et al. Cool running water first aid decreases skin grafting requirements in pediatric burns: a cohort study of 2495 children. Ann Emerg Med. 2020. PMID 31474480"
+  - "Griffin BR, et al. Cool running water first aid decreases skin grafting requirements in pediatric burns: a cohort study of two thousand four hundred ninety-five children. Ann Emerg Med. 2020. PMID 31474480"
   - "McLure M, et al. A rapid review of burns first aid guidelines: is there consistency across international guidelines? Cureus. 2021. PMID 34295589"
   - "Djärv T, et al. Duration of cooling with water for thermal burns as a first aid intervention: a systematic review. Burns. 2022. PMID 34916091"
   - "Bennett CV, et al. First aid for children's burns in the US and UK: an urgent call to establish and promote international standards. Burns. 2019. PMID 30266196"
