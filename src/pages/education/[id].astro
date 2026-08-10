@@ -2,10 +2,13 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
-import { categories, audienceLabel } from "../../data/education-topics";
+import { categories, audienceLabel, stripEn } from "../../data/education-topics";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("education", ({ data }) => !data.draft);
+  const entries = await getCollection(
+    "education",
+    ({ data }) => !data.draft && data.lang === "ko"
+  );
   return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
 }
 
@@ -23,9 +26,17 @@ const category = categories.find((c) =>
   c.topics.some((t) => t.slug === entry.data.topic)
 );
 const topic = category?.topics.find((t) => t.slug === entry.data.topic);
+
+// frontmatter 의 translations 는 정본 쪽 파일명이 들어올 수 있어 신뢰하지 않는다.
+// 영문판이 실제로 발간돼 있을 때만 언어 전환 링크를 띄운다.
+const englishEntries = await getCollection(
+  "education",
+  ({ data }) => !data.draft && data.lang === "en"
+);
+const hasEnglish = englishEntries.some((e) => stripEn(e.id) === entry.id);
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.summary} hasTranslation={false}>
+<BaseLayout title={entry.data.title} description={entry.data.summary} hasTranslation={hasEnglish}>
   <PageHero eyebrow={`${topic?.label ?? entry.data.topic} · ${audienceLabel[entry.data.audience]}`} title={entry.data.title} description={entry.data.summary} />
 
   <article class="section entry">

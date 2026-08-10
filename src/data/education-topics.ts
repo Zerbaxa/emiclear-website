@@ -14,12 +14,15 @@ export interface Topic {
   slug: string;
   /** 카드에 노출되는 짧은 이름 */
   label: string;
+  labelEn: string;
 }
 
 export interface Category {
   id: string;
   label: string;
+  labelEn: string;
   description: string;
+  descriptionEn: string;
   topics: Topic[];
 }
 
@@ -27,23 +30,27 @@ export const categories: Category[] = [
   {
     id: "injury-care",
     label: "다쳤을 때",
+    labelEn: "When a child is hurt",
     description: "다쳤을 때 집에서 하는 처치와 병원에 가야 할 때",
+    descriptionEn: "What to do at home, and when to go to hospital",
     topics: [
-      { slug: "burn", label: "화상" },
-      { slug: "dental-trauma", label: "치아손상" },
-      { slug: "head-injury", label: "두부외상" },
-      { slug: "facial-laceration", label: "얼굴 열상" },
-      { slug: "oral-soft-tissue", label: "입안 상처" },
+      { slug: "burn", label: "화상", labelEn: "Burns" },
+      { slug: "dental-trauma", label: "치아손상", labelEn: "Dental injury" },
+      { slug: "head-injury", label: "두부외상", labelEn: "Head injury" },
+      { slug: "facial-laceration", label: "얼굴 열상", labelEn: "Facial cuts" },
+      { slug: "oral-soft-tissue", label: "입안 상처", labelEn: "Mouth injury" },
     ],
   },
   {
     id: "injury-prevention",
     label: "다치지 않게",
+    labelEn: "Before it happens",
     description: "다치기 전에 갖추는 보호장구와 습관",
+    descriptionEn: "Protective gear and habits that prevent injury",
     topics: [
-      { slug: "helmet", label: "헬멧" },
-      { slug: "eye-protection", label: "눈 보호" },
-      { slug: "orofacial-mouthguard", label: "마우스가드" },
+      { slug: "helmet", label: "헬멧", labelEn: "Helmets" },
+      { slug: "eye-protection", label: "눈 보호", labelEn: "Eye protection" },
+      { slug: "orofacial-mouthguard", label: "마우스가드", labelEn: "Mouthguards" },
     ],
   },
 ];
@@ -53,3 +60,17 @@ export const audienceLabel = {
   public: "보호자용",
   clinicians: "의료인용",
 } as const;
+
+export const audienceLabelEn = {
+  public: "For caregivers",
+  clinicians: "For clinicians",
+} as const;
+
+/**
+ * 영문판 파일은 `<topic>-<audience>-en.md` 로 둔다. 파일명에 점을 넣으면
+ * 컬렉션 id 에 그대로 남아 URL 이 지저분해지므로 하이픈을 쓴다.
+ * URL 은 접미사를 뗀 `/en/education/<topic>-<audience>/` 가 된다.
+ */
+export const EN_SUFFIX = "-en";
+export const stripEn = (id: string) =>
+  id.endsWith(EN_SUFFIX) ? id.slice(0, -EN_SUFFIX.length) : id;
