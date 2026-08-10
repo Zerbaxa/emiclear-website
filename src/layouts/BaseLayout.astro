@@ -22,11 +22,11 @@ const englishPath = `/en${Astro.url.pathname === "/" ? "/" : Astro.url.pathname}
 const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/en/";
 const organization = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "NGO",
   name: isEnglish ? "Emergency Medicine Initiative for Clinical Learning, Education, Artificial Intelligence, and Research" : "응급의학혁신교육연구회",
   alternateName: "EM-I-CLEAR",
   url: Astro.site?.toString(),
-  description: isEnglish ? "A mission-driven, independent nonprofit association based in the Republic of Korea, advancing public benefit through education, research, and responsible technology" : "교육과 연구, 책임 있는 기술을 통해 필요한 도움과 적절한 대응을 연결하는 독립적 비영리단체",
+  description: isEnglish ? "An independent nonprofit health education organization in the Republic of Korea. We educate the public and those who care for them, and support that education with research and responsible technology" : "교육과 연구, 책임 있는 기술을 통해 필요한 도움과 적절한 대응을 연결하는 독립적 비영리단체",
   address: {
     "@type": "PostalAddress",
     streetAddress: isEnglish ? "Maebong-ro" : "매봉로",
