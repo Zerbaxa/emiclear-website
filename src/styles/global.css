@@ -268,7 +268,9 @@ p { margin-bottom: 1.2rem; }
 /* Interior pages */
 .page-hero { padding: clamp(6rem, 10vw, 9rem) 0 clamp(4.5rem, 8vw, 7rem); background: var(--cream-100); }
 .page-hero-inner { max-width: var(--container); }
-.page-hero h1 { max-width: 14ch; margin: 1.4rem 0 1.5rem; }
+/* PageHero 의 title 은 텍스트로만 받는다(<br> 을 넣으면 그대로 출력된다).
+   줄바꿈은 balance 에 맡긴다. */
+.page-hero h1 { max-width: 14ch; margin: 1.4rem 0 1.5rem; text-wrap: balance; }
 .page-hero p:not(.eyebrow) { max-width: 48rem; color: var(--muted); font-size: 1.05rem; }
 .content-grid { display: grid; grid-template-columns: .62fr 1.38fr; gap: clamp(3rem, 8vw, 8rem); }
 .content-grid > h2 { position: sticky; top: 7rem; align-self: start; font-size: clamp(2.2rem, 4vw, 3.7rem); }
