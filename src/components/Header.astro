@@ -2,17 +2,30 @@
 interface Props { lang?: "ko" | "en"; overlay?: boolean; hasTranslation?: boolean }
 const { lang = "ko", overlay = false, hasTranslation = true } = Astro.props;
 const isEnglish = lang === "en";
+/** 자료는 대상이 갈리므로 하위 메뉴로 펼친다. 나머지는 단일 링크. */
 const navigation = isEnglish
   ? [
       { href: "/en/about/", label: "About" },
-      { href: "/en/#approach", label: "Our Approach" },
-      { href: "/en/education/", label: "Education" },
-      { href: "/en/projects/", label: "Education & Research", cta: true },
+      {
+        href: "/en/education/",
+        label: "Resources",
+        children: [
+          { href: "/en/education/for-caregivers/", label: "For caregivers", note: "Plain-language guidance" },
+          { href: "/en/education/for-clinicians/", label: "For clinicians", note: "Scope, limits and PDF" },
+        ],
+      },
+      { href: "/en/projects/", label: "What we do", cta: true },
     ]
   : [
       { href: "/about/", label: "소개" },
-      { href: "/#approach", label: "우리의 방식" },
-      { href: "/education/", label: "자료" },
+      {
+        href: "/education/",
+        label: "자료",
+        children: [
+          { href: "/education/for-caregivers/", label: "보호자용", note: "쉬운 말로 쓴 행동 안내" },
+          { href: "/education/for-clinicians/", label: "의료인용", note: "적용 범위와 한계, PDF" },
+        ],
+      },
       { href: "/projects/", label: "교육·연구", cta: true },
     ];
 
@@ -39,9 +52,30 @@ const languageHref = isEnglish
       <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
     <nav id="primary-navigation" class="primary-nav" aria-label={isEnglish ? "Primary navigation" : "주요 메뉴"}>
-      {navigation.map((item) => (
-        <a class:list={{ "nav-cta": item.cta }} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>{item.label}</a>
-      ))}
+      {navigation.map((item) =>
+        item.children ? (
+          <div class="nav-group">
+            <a
+              class:list={["nav-group__parent", { "is-section": pathname.startsWith(item.href) }]}
+              href={item.href}
+              aria-current={pathname === item.href ? "page" : undefined}
+            >
+              {item.label}
+              <svg class="nav-group__caret" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1L5 5L9 1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav-submenu">
+              {item.children.map((child) => (
+                <a href={child.href} aria-current={pathname === child.href ? "page" : undefined}>
+                  <span class="nav-submenu__label">{child.label}</span>
+                  <span class="nav-submenu__note">{child.note}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a class:list={{ "nav-cta": item.cta }} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>{item.label}</a>
+        )
+      )}
       {hasTranslation && (
         <a class="language-link" href={languageHref} hreflang={isEnglish ? "ko" : "en"} lang={isEnglish ? "ko" : "en"}>{isEnglish ? "KO" : "EN"}</a>
       )}

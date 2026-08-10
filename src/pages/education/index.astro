@@ -1,72 +1,13 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
-import { categories, audienceLabel } from "../../data/education-topics";
-
-const published = await getCollection(
-  "education",
-  ({ data }) => !data.draft && data.lang === "ko"
-);
-
-const formatDate = (d: Date) =>
-  new Intl.DateTimeFormat("ko-KR", { dateStyle: "long" }).format(d);
-
-/** 카테고리별로 발간본과 준비 중 주제를 갈라 둔다. */
-const sections = categories.map((category) => {
-  const entries = category.topics.flatMap((topic) =>
-    published
-      .filter((e) => e.data.topic === topic.slug)
-      .map((entry) => ({ entry, topic }))
-  );
-  const planned = category.topics.filter(
-    (topic) => !published.some((e) => e.data.topic === topic.slug)
-  );
-  return { category, entries, planned };
-});
-
-const total = published.length;
+import TopicGrid from "../../components/TopicGrid.astro";
 ---
 
 <BaseLayout title="자료" description="보건의료인과 일반인·보호자를 위한 검토된 교육자료. 근거와 검토 날짜를 함께 제공합니다.">
   <PageHero eyebrow="Resources" title="검토를 마친 것만 내놓습니다." description="다쳤을 때 무엇을 해야 하는지, 언제 병원에 가야 하는지를 근거와 함께 정리합니다. 자료마다 참고문헌과 검토 날짜를 표시합니다." />
 
-  {sections.map(({ category, entries, planned }) => (
-    <section class="section" id={category.id}>
-      <div class="container">
-        <div class="section-heading" data-reveal>
-          <p class="section-label">{category.label}</p>
-          <h2>{category.description}</h2>
-        </div>
-
-        <ul class="topic-grid" data-reveal>
-          {entries.map(({ entry, topic }) => (
-            <li class="topic-card">
-              <a href={`/education/${entry.id}/`}>
-                <p class="topic-card__eyebrow">
-                  <span>{topic.label}</span>
-                  <span class="topic-card__badge">{audienceLabel[entry.data.audience]}</span>
-                </p>
-                <h3>{entry.data.title}</h3>
-                <p class="topic-card__summary">{entry.data.summary}</p>
-                <p class="topic-card__meta">최종 검토 {formatDate(entry.data.reviewedAt)}</p>
-              </a>
-            </li>
-          ))}
-
-          {planned.map((topic) => (
-            <li class="topic-card topic-card--planned">
-              <p class="topic-card__eyebrow">
-                <span>{topic.label}</span>
-                <span class="topic-card__badge">준비 중</span>
-              </p>
-              <p class="topic-card__summary">검토를 마치는 대로 공개합니다.</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  ))}
+  <TopicGrid />
 
   <section class="section section--alt">
     <div class="container content-grid">
@@ -95,9 +36,6 @@ const total = published.length;
             <p>교육 콘텐츠는 CC BY-NC-ND 4.0으로 제공합니다. 검토를 거친 자료가 임의로 편집되어 다른 맥락에서 유통되는 것을 막기 위해서입니다. 번역이 필요한 경우 EM-I-CLEAR가 검토한 번역본을 직접 제공합니다.</p>
           </article>
         </div>
-        {total === 0 && (
-          <p>아직 공개된 자료가 없습니다. 검토를 마치는 대로 이곳에 올립니다.</p>
-        )}
       </div>
     </div>
   </section>

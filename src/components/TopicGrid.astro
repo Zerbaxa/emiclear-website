@@ -1,0 +1,77 @@
+---
+import { getCollection } from "astro:content";
+import { categories, audienceLabel, audienceLabelEn, stripEn } from "../data/education-topics";
+
+interface Props {
+  lang?: "ko" | "en";
+  /** 지정하면 그 대상의 자료만 보여 준다. 없으면 전체. */
+  audience?: "public" | "clinicians";
+}
+const { lang = "ko", audience } = Astro.props;
+const isEnglish = lang === "en";
+
+const published = await getCollection(
+  "education",
+  ({ data }) =>
+    !data.draft &&
+    data.lang === lang &&
+    (audience ? data.audience === audience : true)
+);
+
+const label = isEnglish ? audienceLabelEn : audienceLabel;
+const formatDate = (d: Date) =>
+  new Intl.DateTimeFormat(isEnglish ? "en-GB" : "ko-KR", { dateStyle: "long" }).format(d);
+const href = (id: string) =>
+  isEnglish ? `/en/education/${stripEn(id)}/` : `/education/${id}/`;
+
+const sections = categories.map((category) => ({
+  category,
+  entries: category.topics.flatMap((topic) =>
+    published.filter((e) => e.data.topic === topic.slug).map((entry) => ({ entry, topic }))
+  ),
+  planned: category.topics.filter(
+    (topic) => !published.some((e) => e.data.topic === topic.slug)
+  ),
+}));
+---
+
+{sections.map(({ category, entries, planned }) => (
+  <section class="section" id={category.id}>
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <p class="section-label">{isEnglish ? category.labelEn : category.label}</p>
+        <h2>{isEnglish ? category.descriptionEn : category.description}</h2>
+      </div>
+
+      <ul class="topic-grid" data-reveal>
+        {entries.map(({ entry, topic }) => (
+          <li class="topic-card">
+            <a href={href(entry.id)}>
+              <p class="topic-card__eyebrow">
+                <span>{isEnglish ? topic.labelEn : topic.label}</span>
+                <span class="topic-card__badge">{label[entry.data.audience]}</span>
+              </p>
+              <h3>{entry.data.title}</h3>
+              <p class="topic-card__summary">{entry.data.summary}</p>
+              <p class="topic-card__meta">
+                {isEnglish ? "Reviewed " : "최종 검토 "}{formatDate(entry.data.reviewedAt)}
+              </p>
+            </a>
+          </li>
+        ))}
+
+        {planned.map((topic) => (
+          <li class="topic-card topic-card--planned">
+            <p class="topic-card__eyebrow">
+              <span>{isEnglish ? topic.labelEn : topic.label}</span>
+              <span class="topic-card__badge">{isEnglish ? "In preparation" : "준비 중"}</span>
+            </p>
+            <p class="topic-card__summary">
+              {isEnglish ? "Published once review is complete." : "검토를 마치는 대로 공개합니다."}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+))}

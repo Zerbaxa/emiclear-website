@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageHero from "../../../components/PageHero.astro";
+import TopicGrid from "../../../components/TopicGrid.astro";
+---
+
+<BaseLayout title="보호자용 자료" description="아이가 다쳤을 때 집에서 무엇을 해야 하는지, 언제 병원에 가야 하는지. 근거를 검토해 쉬운 말로 정리한 보호자용 자료입니다." hasTranslation={false}>
+  <PageHero eyebrow="For caregivers" title="무엇을 해야 하는지<br />먼저 말합니다." description="아이가 다쳤을 때 집에서 할 수 있는 일과, 병원에 가야 하는 때를 구분해 적었습니다. 급할 때 읽을 수 있도록 쉬운 말로 씁니다." />
+  <TopicGrid audience="public" />
+
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>급할 때는<br />망설이지 마세요.</h2>
+      <div class="prose" data-reveal>
+        <div class="notice">
+          <strong>의료정보 안내</strong>
+          <p>이 자료는 일반적인 정보 제공을 목적으로 하며, 개인의 진단이나 치료를 대신하지 않습니다. 판단이 서지 않거나 상태가 나빠지면 119 또는 가까운 응급의료기관의 도움을 받으세요.</p>
+        </div>
+        <p>자료마다 참고문헌과 검토 날짜를 함께 싣습니다. 오류나 누락을 발견하시면 <a href="mailto:contact@emiclear.org">contact@emiclear.org</a> 로 알려주시면 개정에 반영합니다.</p>
+        <p><a class="arrow-link" href="/education/">전체 자료 보기 <span aria-hidden="true">↗</span></a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

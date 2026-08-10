@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import PageHero from "../../../../components/PageHero.astro";
+import TopicGrid from "../../../../components/TopicGrid.astro";
+---
+
+<BaseLayout lang="en" title="For clinicians" description="Clinician resources that state scope and limitations, with references and review dates attached, available as PDF." hasTranslation={false}>
+  <PageHero eyebrow="For clinicians" title="Scope and limits,<br />stated plainly." description="Written from the same evidence review as the caregiver version. We separate what the evidence supports from what remains uncertain, and provide a PDF for print and record." />
+  <TopicGrid lang="en" audience="clinicians" />
+
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>Two versions,<br />one review.</h2>
+      <div class="prose" data-reveal>
+        <p>The clinician and caregiver versions are written from a single evidence review so that they do not contradict each other. To see what caregivers are told, read the <a href="/en/education/for-caregivers/">caregiver resources</a> alongside.</p>
+        <p>We do not publish the names of individual authors or reviewers. These resources are issued as the reviewed position of the organization, not as personal opinion.</p>
+        <div class="notice">
+          <strong>Terms of use</strong>
+          <p>Educational content is provided under CC BY-NC-ND 4.0. You may share and cite it as published; derivatives are not permitted.</p>
+        </div>
+        <p><a class="arrow-link" href="/en/education/">See all resources <span aria-hidden="true">↗</span></a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

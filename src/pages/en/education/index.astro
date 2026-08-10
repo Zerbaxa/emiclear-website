@@ -1,69 +1,13 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PageHero from "../../../components/PageHero.astro";
-import { categories, audienceLabelEn, stripEn } from "../../../data/education-topics";
-
-const published = await getCollection(
-  "education",
-  ({ data }) => !data.draft && data.lang === "en"
-);
-
-const formatDate = (d: Date) =>
-  new Intl.DateTimeFormat("en-GB", { dateStyle: "long" }).format(d);
-
-const sections = categories.map((category) => {
-  const entries = category.topics.flatMap((topic) =>
-    published
-      .filter((e) => e.data.topic === topic.slug)
-      .map((entry) => ({ entry, topic }))
-  );
-  const planned = category.topics.filter(
-    (topic) => !published.some((e) => e.data.topic === topic.slug)
-  );
-  return { category, entries, planned };
-});
+import TopicGrid from "../../../components/TopicGrid.astro";
 ---
 
 <BaseLayout lang="en" title="Resources" description="Reviewed education resources on childhood injury — what to do at home, when to go to hospital, and how to prevent it. Evidence and review dates attached.">
   <PageHero eyebrow="Resources" title="We publish only what has been reviewed." description="What to do when a child is hurt, and when to go to hospital. Every resource carries its references and its review dates." />
 
-  {sections.map(({ category, entries, planned }) => (
-    <section class="section" id={category.id}>
-      <div class="container">
-        <div class="section-heading" data-reveal>
-          <p class="section-label">{category.labelEn}</p>
-          <h2>{category.descriptionEn}</h2>
-        </div>
-
-        <ul class="topic-grid" data-reveal>
-          {entries.map(({ entry, topic }) => (
-            <li class="topic-card">
-              <a href={`/en/education/${stripEn(entry.id)}/`}>
-                <p class="topic-card__eyebrow">
-                  <span>{topic.labelEn}</span>
-                  <span class="topic-card__badge">{audienceLabelEn[entry.data.audience]}</span>
-                </p>
-                <h3>{entry.data.title}</h3>
-                <p class="topic-card__summary">{entry.data.summary}</p>
-                <p class="topic-card__meta">Reviewed {formatDate(entry.data.reviewedAt)}</p>
-              </a>
-            </li>
-          ))}
-
-          {planned.map((topic) => (
-            <li class="topic-card topic-card--planned">
-              <p class="topic-card__eyebrow">
-                <span>{topic.labelEn}</span>
-                <span class="topic-card__badge">In preparation</span>
-              </p>
-              <p class="topic-card__summary">Published once review is complete.</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  ))}
+  <TopicGrid lang="en" />
 
   <section class="section section--alt">
     <div class="container content-grid">

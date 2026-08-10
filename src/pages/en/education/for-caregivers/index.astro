@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import PageHero from "../../../../components/PageHero.astro";
+import TopicGrid from "../../../../components/TopicGrid.astro";
+---
+
+<BaseLayout lang="en" title="For caregivers" description="What to do at home when a child is hurt, and when to go to hospital. Reviewed resources written in plain language for parents and caregivers." hasTranslation={false}>
+  <PageHero eyebrow="For caregivers" title="What to do,<br />said first." description="What you can do at home when a child is hurt, and when hospital care is needed. Written in plain language so it can be read in a hurry." />
+  <TopicGrid lang="en" audience="public" />
+
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>When it is urgent,<br />do not wait.</h2>
+      <div class="prose" data-reveal>
+        <div class="notice">
+          <strong>Medical information notice</strong>
+          <p>These resources are for general information and do not replace diagnosis or treatment for any individual. If you are unsure, or if the child gets worse, call 119 or go to the nearest emergency department.</p>
+        </div>
+        <p>Every resource carries its references and review dates. If you find an error or something missing, write to <a href="mailto:contact@emiclear.org">contact@emiclear.org</a> and we will address it at the next revision.</p>
+        <p><a class="arrow-link" href="/en/education/">See all resources <span aria-hidden="true">↗</span></a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
