@@ -431,19 +431,6 @@ p { margin-bottom: 1.2rem; }
 .footer-bottom p { margin: 0; }
 
 @media (max-width: 980px) {
-  .nav-toggle { display: block; }
-  .primary-nav { position: absolute; top: var(--header-height); right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: .75rem 1.5rem 1.2rem; border-bottom: 1px solid var(--line); background: rgb(255 255 255 / .97); box-shadow: 0 18px 35px rgb(6 26 43 / .1); }
-  .primary-nav.is-open { display: flex; }
-  .site-header--overlay:not(.is-scrolled) .primary-nav a, .primary-nav a { padding: .8rem .2rem; color: var(--navy-900); }
-  .nav-cta { min-height: auto; border: 0; border-radius: 0; }
-  .language-link { border-left: 0; border-top: 1px solid var(--line); }
-  /* 좁은 화면에서는 hover 가 없으므로 하위 메뉴를 그냥 펼쳐 둔다. */
-  .nav-group { display: contents; }
-  .nav-group__caret { display: none; }
-  .nav-submenu { position: static; display: grid; min-width: 0; margin: 0 0 .3rem .9rem; padding: 0; border: 0; border-left: 2px solid var(--line); border-radius: 0; background: transparent; box-shadow: none; opacity: 1; transform: none; visibility: visible; }
-  .nav-submenu::before { content: none; }
-  .nav-submenu a { padding: .55rem .9rem; }
-  .nav-submenu__note { display: none; }
   .story-chapter, .story-chapter--reverse, .lab-project, .lab-project--reverse { min-height: auto; grid-template-columns: 1fr; }
   .story-chapter--reverse .story-media, .lab-project--reverse .project-copy { order: initial; }
   .story-copy, .project-copy { max-width: 44rem; }
@@ -460,6 +447,28 @@ p { margin-bottom: 1.2rem; }
   .content-grid > h2 { position: static; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-links { grid-column: 1 / -1; grid-template-columns: repeat(4, auto); justify-content: start; gap: 1.5rem; }
+}
+
+/* 가로 메뉴가 실제로 안 들어가는 폭에서만 햄버거로 바꾼다.
+   영문 메뉴가 가장 길어 약 690px 를 쓴다. */
+@media (max-width: 800px) {
+  .nav-toggle { display: block; }
+  .primary-nav { position: absolute; top: var(--header-height); right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: .75rem 1.5rem 1.2rem; border-bottom: 1px solid var(--line); background: rgb(255 255 255 / .97); box-shadow: 0 18px 35px rgb(6 26 43 / .1); }
+  .primary-nav.is-open { display: flex; }
+  .site-header--overlay:not(.is-scrolled) .primary-nav a, .primary-nav a { padding: .8rem .2rem; color: var(--navy-900); }
+  .nav-cta { min-height: auto; border: 0; border-radius: 0; }
+  .language-link { border-left: 0; border-top: 1px solid var(--line); }
+  /* 좁은 화면에서는 hover 가 없으므로 하위 메뉴를 그냥 펼쳐 둔다.
+     hover 선택자까지 함께 덮지 않으면 데스크톱 팝업의 translate(-50%) 가
+     살아남아 메뉴에 마우스를 올릴 때 화면 밖으로 밀려난다. */
+  .nav-group { display: contents; }
+  .nav-group__caret { display: none; }
+  .nav-submenu,
+  .nav-group:hover .nav-submenu,
+  .nav-group:focus-within .nav-submenu { position: static; display: grid; min-width: 0; margin: 0 0 .3rem .9rem; padding: 0; border: 0; border-left: 2px solid var(--line); border-radius: 0; background: transparent; box-shadow: none; opacity: 1; transform: none; visibility: visible; }
+  .nav-submenu::before { content: none; }
+  .nav-submenu a { padding: .55rem .9rem; }
+  .nav-submenu__note { display: none; }
 }
 
 @media (max-width: 700px) {
