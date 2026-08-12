@@ -11,7 +11,9 @@ const isEnglish = lang === "en";
         <img src="/brand/emiclear-mark-white.svg" alt="" width="38" height="38" />
         <p class="footer-wordmark">EM-I-CLEAR</p>
       </div>
-      <p class="footer-local-name">{isEnglish ? "Emergency Medicine Initiative for Clinical Learning, Education, Artificial Intelligence, and Research" : "응급의학혁신교육연구회"}</p>
+      {/* 영문판에도 등록 명칭을 병기한다. 고유번호증에 있는 이름은 한글뿐이라
+          이게 없으면 심사자가 증서와 사이트를 이름으로 대조할 수 없다. */}
+      <p class="footer-local-name">{isEnglish ? "Emergency Medicine Initiative for Clinical Learning, Education, Artificial Intelligence, and Research (응급의학혁신교육연구회)" : "응급의학혁신교육연구회"}</p>
       <p class="footer-note">{isEnglish ? "Independent nonprofit association · Republic of Korea" : "비영리 임의단체"}</p>
       <p class="footer-note">{isEnglish ? "Unique Registration No. 614-82-76493" : "고유번호 614-82-76493"}</p>
     </div>
