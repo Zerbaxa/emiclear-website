@@ -421,7 +421,8 @@ p { margin-bottom: 1.2rem; }
 .footer-brand-line img { width: 2.4rem; height: 2.4rem; }
 .footer-wordmark { margin: 0; color: var(--white); }
 .footer-local-name { max-width: 31rem; margin: 1rem 0 .45rem; color: #75d8d0; font-size: .77rem; font-weight: 650; }
-.footer-note { color: #78909f; font-size: .74rem; }
+.footer-note { margin-bottom: .3rem; color: #78909f; font-size: .74rem; }
+.footer-note:last-child { margin-bottom: 0; }
 .footer-kicker { margin-bottom: .7rem; color: var(--white); font-family: var(--serif); font-size: 1.65rem; line-height: 1.25; }
 .footer-message > p:last-child { color: #8ba0ad; font-size: .78rem; }
 .footer-links { display: grid; align-content: start; gap: .7rem; }
