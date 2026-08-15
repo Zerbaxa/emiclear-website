@@ -284,6 +284,10 @@ p { margin-bottom: 1.2rem; }
 .principle { padding: 1.7rem 0; border-bottom: 1px solid var(--line); }
 .principle h3 { margin-bottom: .45rem; font-size: 1.65rem; }
 .principle p { margin: 0; }
+.principle p + p { margin-top: .7rem; }
+/* About 정체성 블록의 소제목. 본문 h3(디스플레이 세리프)와 달리 라벨로 읽힌다. */
+.about-subhead { margin: 3.4rem 0 0; color: var(--teal-700); font-family: var(--sans); font-size: .76rem; font-weight: 800; letter-spacing: .18em; line-height: 1.4; text-transform: uppercase; }
+.about-subhead + .principles { margin-top: 1.1rem; }
 .notice { padding: 1.5rem; border-left: 3px solid var(--coral-500); background: var(--white); }
 .empty-state { padding: clamp(3rem, 7vw, 6rem); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; background: transparent; }
 .empty-state p { margin: 0 auto 1.5rem; max-width: 44rem; color: var(--muted); }

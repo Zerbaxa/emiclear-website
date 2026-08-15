@@ -7,6 +7,55 @@ import Bridge from "../../components/Bridge.astro";
 <BaseLayout lang="en" title="About" description="Between someone who suddenly falls ill and the people who could help, there is a gap the system never filled. EM-I-CLEAR is an independent nonprofit that closes it from both sides.">
   <PageHero eyebrow="About Us" title="We close the gap." description="Between someone who suddenly falls ill and the people who could help, there is a gap the system never filled. EM-I-CLEAR is an independent nonprofit that closes it from both sides." />
 
+  {/* 정체성을 페이지 첫 화면에 세운다. 검증기관 심사자가 끝까지 스크롤하지
+      않으므로, 「무엇이고 무엇이 아닌지」가 히어로 바로 다음에 와야 한다. */}
+  <section class="section section--alt">
+    <div class="container content-grid">
+      <h2>A public-benefit <br />health education nonprofit.</h2>
+      <div class="prose" data-reveal>
+        <p class="section-label">Who we are</p>
+        <p>EM-I-CLEAR is an independent nonprofit association in the Republic of Korea, registered with the National Tax Service as 응급의학혁신교육연구회 under Unique Registration Number 614-82-76493. <strong>What we produce is health education for the public.</strong> Everything we publish is free to read, and we distribute no profit of any kind.</p>
+
+        <h3 class="about-subhead">Who we write for</h3>
+        <div class="principles">
+          <article class="principle">
+            <h3>Caregivers and families</h3>
+            <p>Parents and guardians looking after a child who has been hurt or has suddenly fallen ill — what to do at home, and when a hospital is needed.</p>
+          </article>
+          <article class="principle">
+            <h3>Immigrant and multicultural families living in Korea</h3>
+            <p><strong>Language is one of the widest gaps between a family and the care they need.</strong> A caregiver who cannot read Korean is left with less information at the moment it matters most, and that is one of the gaps we exist to close.</p>
+            <p>So we publish in English as well as Korean, written for life in Korea — the same 119, the same emergency departments, the same neighborhood clinics. The English edition is not a shortened version; it is the same guidance. Where another language is needed, we provide a reviewed translation on request.</p>
+          </article>
+          <article class="principle">
+            <h3>Teachers and the general public</h3>
+            <p>First aid, how to recognize an urgent condition, and when emergency care is the right call.</p>
+          </article>
+          <article class="principle">
+            <h3>Clinicians and trainees</h3>
+            <p>The people who care for them, so that what a family is told at home and what happens at the hospital rest on the same evidence.</p>
+          </article>
+        </div>
+
+        <h3 class="about-subhead">What we are not</h3>
+        <div class="principles">
+          <article class="principle">
+            <h3>We do not provide clinical care</h3>
+            <p>We do not operate a hospital or a clinic, and we do not treat patients or prescribe. We are not a healthcare provider and not part of any healthcare system. What we produce is educational material, research, and tools.</p>
+          </article>
+          <article class="principle">
+            <h3>We are not a school</h3>
+            <p>We are not a university, an academic institution or a school foundation, and we are not part of or affiliated with one. We award no degrees or qualifications and enroll no students.</p>
+          </article>
+          <article class="principle">
+            <h3>We belong to no one</h3>
+            <p>We are not owned by, and do not speak for, any hospital, company or government body. We sell nothing and we carry no advertising.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container content-grid">
       <h2>The same night, <br />inside and out.</h2>
@@ -109,26 +158,11 @@ import Bridge from "../../components/Bridge.astro";
 
   <section class="section section--alt">
     <div class="container content-grid">
-      <h2>An independent <br />nonprofit.</h2>
+      <h2>What we have <br />not done yet.</h2>
       <div class="prose" data-reveal>
-        <p class="section-label">Who we are</p>
-        <p><strong>EM-I-CLEAR is a health education organization.</strong> We are an independent nonprofit association in the Republic of Korea, registered with the National Tax Service as 응급의학혁신교육연구회 under Unique Registration Number 614-82-76493. What we produce is education — for the public, for caregivers, and for the clinicians who look after them. Research and technology are how we make that education better, not separate ends. We exist for public benefit and distribute no profit of any kind.</p>
-        <div class="principles">
-          <article class="principle">
-            <h3>We do not provide clinical care</h3>
-            <p>We do not operate a hospital or a clinic, and we do not treat patients or prescribe. We are not a healthcare provider. What we produce is educational material, research, and tools.</p>
-          </article>
-          <article class="principle">
-            <h3>We are not a school</h3>
-            <p>We are not part of a university, an academic institution or a school foundation, and we award no degrees or qualifications. We are not affiliated with any university.</p>
-          </article>
-          <article class="principle">
-            <h3>We belong to no one</h3>
-            <p>We are not owned by, and do not speak for, any hospital, company or government body. We sell nothing and we carry no advertising.</p>
-          </article>
-        </div>
+        <p class="section-label">Plainly</p>
+        <p>We say plainly what we have not done yet. On this site, work that is still at the planning stage is labeled as planned.</p>
         <p>Everything we publish is free to read. Educational material is released under an open license so that it can be shared at no cost, and we publish it under the name of the organization rather than any individual.</p>
-        <p>We also say plainly what we have not done yet. On this site, work that is still at the planning stage is labeled as planned.</p>
       </div>
     </div>
   </section>
