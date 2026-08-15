@@ -3,12 +3,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Bridge from "../../components/Bridge.astro";
 ---
 
-<BaseLayout lang="en" title="EM-I-CLEAR" description="An independent health education nonprofit in the Republic of Korea. We teach the public and those who care for them, and close the gap the system leaves — with education first, supported by research and responsible technology.">
+<BaseLayout lang="en" title="EM-I-CLEAR" description="An independent health education nonprofit in the Republic of Korea. We publish free guides on what to do at home and how to use Korea's emergency care — in Korean and in English, for families who cannot get that guidance in Korean.">
   <section class="story-hero story-hero--home">
     <div class="container story-hero__content">
       <p class="hero-label">Health education nonprofit · Republic of Korea</p>
       <h1>For a world where <br />no one has to suffer.</h1>
-      <p class="story-hero__lead">We close the gap the system leaves between people who suddenly need care and the people who can give it.</p>
+      <p class="story-hero__lead">We shorten the distance to care. What to do at home, and how to use Korea&rsquo;s emergency system &mdash; in Korean, and in English.</p>
       <div class="hero-actions">
         <a class="button button-solid" href="#story">What we do</a>
         <a class="button button-ghost" href="/en/projects/">Education &amp; Research</a>
@@ -38,16 +38,16 @@ import Bridge from "../../components/Bridge.astro";
 
   <section id="story" class="story-sequence" aria-label="What EM-I-CLEAR does">
     <article id="programs" class="story-chapter container">
-      <figure class="story-media story-media--phone" data-reveal>
+      <figure class="story-media story-media--portrait" data-reveal>
         <span class="story-media__index" aria-hidden="true">01</span>
-        <img src="/images/smartphone-unsplash-1678522345215.jpg" alt="A hand looking at a smartphone" width="2400" height="1600" loading="lazy" />
-        <figcaption>Being able to describe what is wrong.</figcaption>
+        <img src="/images/family-reading-pexels-3755514.jpg" alt="A parent and child reading together at home" width="2200" height="1467" loading="lazy" />
+        <figcaption>The same guidance, in a language you can read.</figcaption>
       </figure>
       <div class="story-copy" data-reveal>
-        <p class="chapter-label">Technology · Toward the provider</p>
-        <h3>Technology <br />closes the gap.</h3>
-        <p>We help people take stock of their own condition and put it into the language of medicine, and work out with them whether this is a moment that needs a clinician.</p>
-        <a class="arrow-link" href="/en/projects/#technology">Emergency decision support <span aria-hidden="true">↗</span></a>
+        <p class="chapter-label">Education &middot; For families and the public</p>
+        <h3>What we <br />publish.</h3>
+        <p>Free guides on what to do at home and when a hospital is needed &mdash; reviewed against the literature, with the references and review dates attached. Published in Korean and in English, written for life in Korea, so that a family who cannot read Korean gets the same guidance and not a shortened version.</p>
+        <a class="arrow-link" href="/en/education/">Resources <span aria-hidden="true">↗</span></a>
       </div>
     </article>
 
@@ -58,7 +58,7 @@ import Bridge from "../../components/Bridge.astro";
         <figcaption>More people who can carry the load.</figcaption>
       </figure>
       <div class="story-copy" data-reveal>
-        <p class="chapter-label">Education · Toward the patient</p>
+        <p class="chapter-label">Education &middot; For clinicians</p>
         <h3>We train the people <br />who provide care.</h3>
         <p>Residents and medical students work through emergencies again and again, then look back together at the decisions they made and at how the team communicated.</p>
         <a class="arrow-link" href="/en/projects/#education">Simulation education <span aria-hidden="true">↗</span></a>
@@ -66,18 +66,33 @@ import Bridge from "../../components/Bridge.astro";
     </article>
 
     <article class="story-chapter container">
-      <figure class="story-media" data-reveal>
+      <figure class="story-media story-media--phone" data-reveal>
         <span class="story-media__index" aria-hidden="true">03</span>
+        <img src="/images/smartphone-unsplash-1678522345215.jpg" alt="A hand looking at a smartphone" width="2400" height="1600" loading="lazy" />
+        <figcaption>Being able to describe what is wrong.</figcaption>
+      </figure>
+      <div class="story-copy" data-reveal>
+        <p class="chapter-label">Technology &middot; In development</p>
+        <h3>Technology <br />closes the gap.</h3>
+        <p>We help people take stock of their own condition and put it into the language of medicine, and work out with them whether this is a moment that needs a clinician. An educational tool, not a medical device and not a clinical service.</p>
+        <a class="arrow-link" href="/en/projects/#technology">Emergency decision support <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article class="story-chapter story-chapter--reverse container">
+      <figure class="story-media" data-reveal>
+        <span class="story-media__index" aria-hidden="true">04</span>
         <img src="/images/pediatric-tools-pexels-4491759.jpg" alt="Toy medical tools used for child-friendly health education" width="2000" height="3000" loading="lazy" />
         <figcaption>Starting where the gap is widest.</figcaption>
       </figure>
       <div class="story-copy" data-reveal>
-        <p class="chapter-label">Priority · Children &amp; adolescents</p>
+        <p class="chapter-label">Priority &middot; Children &amp; adolescents</p>
         <h3>We start <br />here.</h3>
         <p>When no hospital can accept a patient, children and adolescents are turned away first. This is where the gap has opened widest.</p>
         <a class="arrow-link" href="/en/about/">The problem we see <span aria-hidden="true">↗</span></a>
       </div>
     </article>
+
   </section>
 
   <section class="nonprofit-panel nonprofit-panel--minimal">

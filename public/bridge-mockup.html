@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Approach 도해 — 검토</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" rel="stylesheet">
+<style>
+body{margin:0;background:#EDEAE2;color:#0B1F33;font-family:Pretendard,Manrope,sans-serif}
+.wrap{padding:48px 40px 88px;display:flex;flex-direction:column;gap:40px;max-width:1400px;margin:0 auto}
+.kicker{font-family:Manrope,sans-serif;font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#0A6E68}
+h1{margin:0;font-family:'Noto Serif KR',Newsreader,serif;font-weight:500;font-size:30px;letter-spacing:-.01em}
+.note{margin:0;font-size:14px;line-height:1.75;color:#525F6B;max-width:820px}
+.card{background:#F7F5EF;border:1px solid rgba(11,31,51,.12);padding:44px 40px 40px;display:flex;flex-direction:column;gap:32px}
+.cardlab{font-family:Manrope,sans-serif;font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#525F6B}
+.tag{font-family:Manrope,sans-serif;font-weight:800;font-size:12px;letter-spacing:.1em;color:#F7F5EF;padding:5px 10px;border-radius:4px}
+.row{display:flex;gap:32px;flex-wrap:wrap}
+.row>div{flex:1 1 560px;min-width:480px;display:flex;flex-direction:column;gap:16px}
+.hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.hd b{font-weight:600;font-size:17px}
+.hd i{font-style:normal;font-size:13px;color:#525F6B}
+
+/* ══ Claude Design 산출물 — 그대로 옮김 ══ */
+.oa{container-type:inline-size;container-name:oa;width:100%}
+.oa-grid{display:grid;grid-template-columns:1fr 0px 1fr}
+.oa-gap{border-left:1.5px dashed rgba(11,31,51,.34);justify-self:center}
+.oa-col{display:flex;flex-direction:column;align-items:center;gap:20px;padding:6px 20px 30px;text-align:center;font-family:Pretendard,Manrope,sans-serif}
+.oa-lab{font-family:Manrope,Pretendard,sans-serif;font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#525F6B}
+.oa-mean{font-family:Pretendard,sans-serif;font-weight:600;font-size:34px;line-height:1;color:#0B1F33}
+.oa-sigbox{display:grid;place-items:center;width:148px;height:48px}
+.oa-sig-r svg{transform:rotate(0deg)}
+.oa-sig-l svg{transform:rotate(180deg)}          /* ← 원안 */
+.oa--fix .oa-sig-l svg{transform:scaleX(-1)}      /* ← 수정안: 좌우 반전 */
+
+.oa-merge{display:grid;grid-template-columns:1fr 1fr;height:34px}
+.oa-arm-l{border-left:1.5px solid #0B1F33;border-bottom:1.5px solid #0B1F33;border-bottom-right-radius:17px;margin-left:calc(50% - .75px)}
+.oa-arm-r{border-right:1.5px solid #0B1F33;border-bottom:1.5px solid #0B1F33;border-bottom-left-radius:17px;margin-right:calc(50% - .75px)}
+.oa-stub,.oa-stub-v{width:0;border-left:1.5px solid #0B1F33;justify-self:center}
+.oa-stub{height:16px}
+.oa-stub-v{display:none;height:0}
+.oa-join{display:flex;justify-content:center}
+.oa-join span{font-family:Pretendard,sans-serif;font-weight:600;font-size:18px;letter-spacing:-.01em;color:#0B1F33;background:#F7F5EF;border:1.5px solid #0B1F33;border-radius:999px;padding:9px 26px}
+
+.oa-col,.oa-merge,.oa-stub,.oa-stub-v,.oa-join,.oa-gap{transition:opacity .55s ease,transform .55s ease}
+.oa:not(.in) .oa-stub-v{opacity:0}
+.oa:not(.in) .oa-col-l{opacity:0;transform:translateX(-26px)}
+.oa:not(.in) .oa-col-r{opacity:0;transform:translateX(26px)}
+.oa:not(.in) .oa-gap{opacity:0}
+.oa:not(.in) .oa-merge,.oa:not(.in) .oa-stub,.oa:not(.in) .oa-join{opacity:0;transform:translateY(-8px)}
+.oa.in .oa-gap{transition-delay:.05s}
+.oa.in .oa-merge{transition-delay:.62s}
+.oa.in .oa-stub-v{transition-delay:.62s}
+.oa.in .oa-stub{transition-delay:.72s}
+.oa.in .oa-join{transition-delay:.80s}
+.oa-line{stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset .7s ease .32s}
+.oa:not(.in) .oa-line{stroke-dashoffset:1}
+.oa-dot{transition:opacity .3s ease .95s}
+.oa:not(.in) .oa-dot{opacity:0}
+.oa-head{transition:opacity .3s ease .95s}
+.oa:not(.in) .oa-head{opacity:0}
+
+@container oa (max-width:520px){
+  .oa-grid{grid-template-columns:1fr;grid-template-rows:auto 0px auto;justify-items:center}
+  .oa-gap{border-left:0;border-top:1.5px dashed rgba(11,31,51,.34);width:64%;align-self:center}
+  .oa-col{padding:22px 16px}
+  .oa-sigbox{width:148px;height:126px}
+  .oa-sig-r svg{transform:rotate(90deg) scale(.86)}
+  .oa-sig-l svg{transform:rotate(270deg) scale(.86)}
+  .oa--fix .oa-sig-l svg{transform:rotate(90deg) scaleX(-1) scale(.86)}
+  .oa-merge{display:none}
+  .oa-stub-v{display:block;height:26px}
+  .oa-stub{height:0;border-left:0}
+  .oa:not(.in) .oa-col-l{transform:translateY(-22px)}
+  .oa:not(.in) .oa-col-r{transform:translateY(22px)}
+}
+@media (prefers-reduced-motion:reduce){
+  .oa-col,.oa-merge,.oa-stub,.oa-stub-v,.oa-join,.oa-gap,.oa-line,.oa-dot,.oa-head{transition:none!important}
+  .oa:not(.in) *{opacity:1!important;transform:none!important}
+  .oa:not(.in) .oa-line{stroke-dashoffset:0!important}
+}
+/* 비교용 확대 */
+.zoom{background:#fff;border:1px solid rgba(11,31,51,.12);padding:28px;display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+.zoom figure{margin:0;text-align:center}
+.zoom figcaption{font-family:Manrope,sans-serif;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-top:10px}
+.phone{width:375px;border:1px dashed rgba(11,31,51,.25);padding:26px 16px;background:#F7F5EF}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:9px">
+  <div class="kicker">Claude Design 산출물 검토</div>
+  <h1>Our Approach 도해</h1>
+  <p class="note">Claude Design이 만든 CSS를 그대로 옮기고, 우리 사이트의 폰트 로딩(Pretendard dynamic subset)만 적용했습니다. 아래 <b>신호선 방향</b> 항목이 검토가 필요한 부분입니다.</p>
+</header>
+
+<!-- 문제 확인 -->
+<section style="display:flex;flex-direction:column;gap:16px">
+  <div class="cardlab" style="color:#0A6E68">확인 필요 · 심전도 파형 방향</div>
+  <div class="zoom">
+    <figure>
+      <svg viewBox="0 0 148 48" width="222" height="72" aria-hidden="true">
+        <path d="M2 24 H26 Q31 17 36 24 H41 L43 28 L46 7 L49 33 L51 24 H60 Q66 15 72 24 H120" fill="none" stroke="#0F9D94" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="131" cy="24" r="4" fill="#FF6B5F"/>
+      </svg>
+      <figcaption style="color:#0A6E68">왼쪽 열 (기준)</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 148 48" width="222" height="72" style="transform:rotate(180deg)" aria-hidden="true">
+        <path d="M2 24 H26 Q31 17 36 24 H41 L43 28 L46 7 L49 33 L51 24 H60 Q66 15 72 24 H120" fill="none" stroke="#0F9D94" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="131" cy="24" r="4" fill="#FF6B5F"/>
+      </svg>
+      <figcaption style="color:#B03A2E">원안 · rotate(180deg) — QRS가 아래로 뒤집힘</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 148 48" width="222" height="72" style="transform:scaleX(-1)" aria-hidden="true">
+        <path d="M2 24 H26 Q31 17 36 24 H41 L43 28 L46 7 L49 33 L51 24 H60 Q66 15 72 24 H120" fill="none" stroke="#0F9D94" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="131" cy="24" r="4" fill="#FF6B5F"/>
+      </svg>
+      <figcaption style="color:#0A6E68">수정 · scaleX(-1) — 방향만 반전, 파형 유지</figcaption>
+    </figure>
+  </div>
+  <p class="note"><b>rotate(180deg)는 상하까지 뒤집습니다.</b> 오른쪽 열의 심전도가 QRS 하향(음성 QRS)으로 그려집니다. 방향만 바꾸려면 <span style="font-family:ui-monospace,monospace">scaleX(-1)</span>이 맞습니다. 로고의 파형과도 그래야 같은 형태가 됩니다.</p>
+</section>
+
+<!-- 1a / 1b 비교 -->
+<section class="row">
+  <div>
+    <div class="hd"><span class="tag" style="background:#0B1F33">1A</span><b>단순 화살표</b><i>중립적 · 브랜드 연결 약함</i></div>
+    <div class="card">
+      <div class="cardlab">홈 배치 · 도해 + 리드 한 줄</div>
+      <p style="margin:0;max-width:520px;font-family:'Noto Serif KR',Newsreader,serif;font-weight:400;font-size:22px;line-height:1.65">어느 쪽도 탓하지 않습니다. 벌어진 거리 자체를 좁힙니다.</p>
+      <div class="oa oa--fix">
+        <div class="oa-grid">
+          <div class="oa-col oa-col-l"><div class="oa-lab">의료 제공자</div><div class="oa-mean">교육</div>
+            <div class="oa-sigbox oa-sig-r"><svg viewBox="0 0 148 48" width="148" height="48" aria-hidden="true">
+              <path class="oa-line" pathLength="1" d="M2 24 H118" fill="none" stroke="#0F9D94" stroke-width="2.4" stroke-linecap="round"/>
+              <path class="oa-head" d="M118 16 L130 24 L118 32" fill="none" stroke="#0B1F33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg></div></div>
+          <div class="oa-gap"></div>
+          <div class="oa-col oa-col-r"><div class="oa-lab">의료수요자</div><div class="oa-mean">기술</div>
+            <div class="oa-sigbox oa-sig-l"><svg viewBox="0 0 148 48" width="148" height="48" aria-hidden="true">
+              <path class="oa-line" pathLength="1" d="M2 24 H118" fill="none" stroke="#0F9D94" stroke-width="2.4" stroke-linecap="round"/>
+              <path class="oa-head" d="M118 16 L130 24 L118 32" fill="none" stroke="#0B1F33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg></div></div>
+        </div>
+        <div class="oa-merge"><div class="oa-arm-l"></div><div class="oa-arm-r"></div></div>
+        <div class="oa-stub-v"></div><div class="oa-stub"></div>
+        <div class="oa-join"><span>간극을 좁힙니다</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="hd"><span class="tag" style="background:#0A6E68">1B</span><b>심전도 신호선</b><i>로고에서 빠져나온 신호가 상대를 향해 뻗음 · 권장</i></div>
+    <div class="card">
+      <div class="cardlab">홈 배치 · 도해 + 리드 한 줄</div>
+      <p style="margin:0;max-width:520px;font-family:'Noto Serif KR',Newsreader,serif;font-weight:400;font-size:22px;line-height:1.65">어느 쪽도 탓하지 않습니다. 벌어진 거리 자체를 좁힙니다.</p>
+      <div class="oa oa--fix">
+        <div class="oa-grid">
+          <div class="oa-col oa-col-l"><div class="oa-lab">의료 제공자</div><div class="oa-mean">교육</div>
+            <div class="oa-sigbox oa-sig-r"><svg viewBox="0 0 148 48" width="148" height="48" aria-hidden="true">
+              <path class="oa-line" pathLength="1" d="M2 24 H26 Q31 17 36 24 H41 L43 28 L46 7 L49 33 L51 24 H60 Q66 15 72 24 H120" fill="none" stroke="#0F9D94" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle class="oa-dot" cx="131" cy="24" r="4" fill="#FF6B5F"/>
+            </svg></div></div>
+          <div class="oa-gap"></div>
+          <div class="oa-col oa-col-r"><div class="oa-lab">의료수요자</div><div class="oa-mean">기술</div>
+            <div class="oa-sigbox oa-sig-l"><svg viewBox="0 0 148 48" width="148" height="48" aria-hidden="true">
+              <path class="oa-line" pathLength="1" d="M2 24 H26 Q31 17 36 24 H41 L43 28 L46 7 L49 33 L51 24 H60 Q66 15 72 24 H120" fill="none" stroke="#0F9D94" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle class="oa-dot" cx="131" cy="24" r="4" fill="#FF6B5F"/>
+            </svg></div></div>
+        </div>
+        <div class="oa-merge"><div class="oa-arm-l"></div><div class="oa-arm-r"></div></div>
+        <div class="oa-stub-v"></div><div class="oa-stub"></div>
+        <div class="oa-join"><span>간극을 좁힙니다</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 375px -->
+<section style="display:flex;flex-direction:column;gap:16px">
+  <div class="cardlab">375px · 컨테이너 쿼리 스택 (1B)</div>
+  <div class="card" style="align-items:flex-start">
+    <div class="phone">
+      <div class="oa oa--fix">
+        <div class="oa-grid">
+          <div class="oa-col oa-col-l"><div class="oa-lab">의료 제공자</div><div class="oa-mean">교육</div>
+            <div class="oa-sigbox oa-sig-r"><svg viewBox="0 0 148 48" width="148" height="48" aria-hidden="true">
+              <path class="oa-line" pathLength="1" d="M2 24 H26 Q31 17 36 24 H41 L43 28 L46 7 L49 33 L51 24 H60 Q66 15 72 24 H120" fill="none" stroke="#0F9D94" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle class="oa-dot" cx="131" cy="24" r="4" fill="#FF6B5F"/>
+            </svg></div></div>
+          <div class="oa-gap"></div>
+          <div class="oa-col oa-col-r"><div class="oa-lab">의료수요자</div><div class="oa-mean">기술</div>
+            <div class="oa-sigbox oa-sig-l"><svg viewBox="0 0 148 48" width="148" height="48" aria-hidden="true">
+              <path class="oa-line" pathLength="1" d="M2 24 H26 Q31 17 36 24 H41 L43 28 L46 7 L49 33 L51 24 H60 Q66 15 72 24 H120" fill="none" stroke="#0F9D94" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle class="oa-dot" cx="131" cy="24" r="4" fill="#FF6B5F"/>
+            </svg></div></div>
+        </div>
+        <div class="oa-merge"><div class="oa-arm-l"></div><div class="oa-arm-r"></div></div>
+        <div class="oa-stub-v"></div><div class="oa-stub"></div>
+        <div class="oa-join"><span>간극을 좁힙니다</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+<script>
+const nodes=[...document.querySelectorAll('.oa')];
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.35,rootMargin:'0px 0px -8% 0px'});
+  nodes.forEach(n=>io.observe(n));
+}else nodes.forEach(n=>n.classList.add('in'));
+</script>
+</body>
+</html>
