@@ -7,7 +7,9 @@ import Bridge from "../../components/Bridge.astro";
   <section class="story-hero story-hero--home">
     <div class="container story-hero__content">
       <p class="hero-label">Health education nonprofit · Republic of Korea</p>
-      <h1>For a world where <br />no one has to suffer.</h1>
+      {/* 줄바꿈은 balance 에 맡긴다. <br /> 를 고정하면 좁은 폭에서
+          「where」가 홀로 떨어진다. */}
+      <h1>For a world where no one has to suffer.</h1>
       <p class="story-hero__lead">We shorten the distance to care. What to do at home, and how to use Korea&rsquo;s emergency system &mdash; in Korean, and in English.</p>
       <div class="hero-actions">
         <a class="button button-solid" href="#story">What we do</a>
@@ -38,9 +40,9 @@ import Bridge from "../../components/Bridge.astro";
 
   <section id="story" class="story-sequence" aria-label="What EM-I-CLEAR does">
     <article id="programs" class="story-chapter container">
-      <figure class="story-media story-media--portrait" data-reveal>
+      <figure class="story-media story-media--page" data-reveal>
         <span class="story-media__index" aria-hidden="true">01</span>
-        <img src="/images/family-reading-pexels-3755514.jpg" alt="A parent and child reading together at home" width="2200" height="1467" loading="lazy" />
+        <img src="/images/printed-guide-pexels-5079287.jpg" alt="An open printed guide" width="2200" height="1467" loading="lazy" />
         <figcaption>The same guidance, in a language you can read.</figcaption>
       </figure>
       <div class="story-copy" data-reveal>

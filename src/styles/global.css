@@ -115,6 +115,9 @@ p { margin-bottom: 1.2rem; }
 .story-hero__content { position: relative; z-index: 2; padding-top: calc(var(--header-height) + 4rem); padding-bottom: clamp(6.5rem, 12vh, 8.5rem); }
 .hero-label { margin-bottom: 1.45rem; color: #85ddd4; }
 .story-hero h1 { max-width: 11ch; margin-bottom: 1.6rem; color: var(--white); text-wrap: balance; }
+/* 11ch 는 국문 글자폭 기준이다. 영문은 같은 폭에서 「For a world where」가
+   넘쳐 「where」가 홀로 떨어진다. */
+html[lang="en"] .story-hero h1 { max-width: 15ch; }
 .story-hero__lead { max-width: 42rem; color: rgb(255 255 255 / .88); font-size: clamp(1.02rem, 1.8vw, 1.25rem); line-height: 1.65; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2.1rem; }
 .story-hero .button-solid { color: var(--navy-950); background: #8bded5; }
@@ -137,6 +140,8 @@ p { margin-bottom: 1.2rem; }
 .story-media:first-child img { object-position: center 48%; }
 .story-media--portrait img { object-position: center 58%; }
 .story-media--phone img { object-position: 57% center; }
+/* 인쇄물 사진은 왼쪽 지면에 외국어 본문이 읽힌다. 접힌 면 쪽으로 민다. */
+.story-media--page img { object-position: 100% center; }
 .story-media figcaption { position: absolute; right: 1rem; bottom: 1rem; left: 1rem; padding: .6rem .75rem; color: rgb(255 255 255 / .92); border-radius: .3rem; background: rgb(6 26 43 / .64); backdrop-filter: blur(10px); font-size: .68rem; }
 .story-copy { max-width: 32rem; }
 .chapter-label { margin-bottom: 2.2rem; color: var(--teal-700); font-family: var(--sans); font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
